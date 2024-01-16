@@ -1,0 +1,7 @@
+transana_keystore.jks
+ALIAS:transana_keystore
+paswword: losmayas1994
+
+TRANSMAP KEY:
+Alias:transmap
+pwd:transmap
