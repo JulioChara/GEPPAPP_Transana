@@ -41,7 +41,7 @@ class EmpleadoService {
 
       var decodeData = json.decode(resp.body);
 
-      final List<EmpleadoModel> trabajador = new List();
+      final List<EmpleadoModel> trabajador = [];
 
       decodeData["EmpleadoModel"].forEach((item) {
         final EmpleadoModelTemp = EmpleadoModel.fromJson(item);
@@ -51,6 +51,7 @@ class EmpleadoService {
       return trabajador;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 

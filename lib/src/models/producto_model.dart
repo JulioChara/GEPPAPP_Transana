@@ -1,11 +1,11 @@
 
 class Producto {
-  String productoId;
-  String producto;
-  String cantidad;
-  String precioUnitario;
-  String total;
-  String subProductoFk;
+  String? productoId;
+  String? producto;
+  String? cantidad;
+  String? precioUnitario;
+  String? total;
+  String? subProductoFk;
 
   Producto({
     this.productoId,
@@ -38,9 +38,9 @@ class Producto {
 
 
 class ProductoInformes {
-  String productoId;
-  String producto;
-  String Tipo;
+  String? productoId;
+  String? producto;
+  String? Tipo;
 
   ProductoInformes({
     this.productoId,

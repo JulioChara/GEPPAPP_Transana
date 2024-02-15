@@ -158,13 +158,13 @@ class _HomePageState extends State<HomePage> {
             {
               if (snapshot.hasData) {
                 final guiaModel = snapshot.data;
-                return guiaModel.length > 0
+                return guiaModel!.length > 0
                     ? ListView.builder(
                         itemCount: guiaModel.length,
                         itemBuilder: (context, i) {
                           return (ListTile(
                             title: Text(
-                              guiaModel[i].clientes,
+                              guiaModel[i].clientes!,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
 
                                     String anular = "Anular";
 
-                                    List<String> choices = new List();
+                                    List<String> choices = [];
 
                                     if (guiaModel[i].estadoSunat ==
                                         "Rechazado Sunat") {
@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage> {
 
                                     return choices.map((String choice) {
                                       return PopupMenuItem<String>(
-                                        value: guiaModel[i].id + ","+choice,
+                                        value: guiaModel[i].id! + ","+choice,
                                         child: Text(choice),
                                       );
                                     }).toList();
@@ -320,7 +320,7 @@ class _HomePageState extends State<HomePage> {
     GuiaService service = new GuiaService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String  idUser =  prefs.getString('idUser') ;
+    String  idUser =  prefs.getString('idUser')! ;
    // String  rolId =  prefs.getString('rolId') ;
 
 
@@ -437,7 +437,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -452,7 +452,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

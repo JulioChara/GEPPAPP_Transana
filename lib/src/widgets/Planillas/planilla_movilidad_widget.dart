@@ -11,8 +11,8 @@ import 'package:transana_app/src/services/planilla_gastos_services.dart';
 class PlanillaMovilidadWidget extends StatefulWidget {
 
 
-  String idViajeW="";
-  String tipoDocGasto="";
+  String? idViajeW="";
+  String? tipoDocGasto="";
   PlanillaMovilidadWidget({
     this.idViajeW,
     this.tipoDocGasto
@@ -48,7 +48,7 @@ class _PlanillaMovilidadWidgetState extends State<PlanillaMovilidadWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _saveMovilidadModel.viajeFk = widget.idViajeW;
       _saveMovilidadModel.tipoDocGasto = widget.tipoDocGasto;
       //_saveMovilidadModel.fecha = selDate; //fecha creacion se da por el webservice
@@ -107,8 +107,8 @@ class _PlanillaMovilidadWidgetState extends State<PlanillaMovilidadWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Numero de Planilla";
                     }
                     return null;
@@ -174,8 +174,8 @@ class _PlanillaMovilidadWidgetState extends State<PlanillaMovilidadWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un monto";
                     }
                     return null;
@@ -203,8 +203,8 @@ class _PlanillaMovilidadWidgetState extends State<PlanillaMovilidadWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una descripcion";
                     }
                     return null;
@@ -244,7 +244,7 @@ class _PlanillaMovilidadWidgetState extends State<PlanillaMovilidadWidget> {
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

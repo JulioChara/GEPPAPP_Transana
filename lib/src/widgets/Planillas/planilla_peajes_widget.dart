@@ -6,8 +6,8 @@ import 'package:transana_app/src/services/planilla_gastos_services.dart';
 
 class PlanillaPeajesWidget extends StatefulWidget {
 
-  String idViajeW="";
-  String tipoDocGasto="";
+  String? idViajeW="";
+  String? tipoDocGasto="";
   PlanillaPeajesWidget({
     this.idViajeW,
     this.tipoDocGasto
@@ -20,8 +20,8 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
 
 
 
-  static List<DestinosPeajesModel> destinos = new List<DestinosPeajesModel>();
-  static List<PlanillaComprobantesModel> comprobantes = new List<PlanillaComprobantesModel>();
+  static List<DestinosPeajesModel> destinos = [];
+  static List<PlanillaComprobantesModel> comprobantes =[];
 
   var objPlanillaGastosServices = new PlanillaGastosServices(); //
 
@@ -54,7 +54,7 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
     // TODO: implement initState
     super.initState();
     getData();
-    print("ID ACTUAL: " + widget.idViajeW);
+    print("ID ACTUAL: " + widget.idViajeW!);
   }
 
   void getData() async {
@@ -64,16 +64,16 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
 
       // defComprobante = comprobantes[0].tipoId;
       //defComprobante = destinos[0].tipoComprobante;  :o
-      print("Comprobante ID: "+ destinos[0].tipoComprobante);
-      defDestino = destinos[0].id;
-      sDestino = destinos[0].destino;
+      print("Comprobante ID: "+ destinos[0].tipoComprobante!);
+      defDestino = destinos[0].id!;
+      sDestino = destinos[0].destino!;
 
 
       List<DestinosPeajesModel> lista = destinos.where((element) => element.id == defDestino).toList();
-      defComprobante = lista.first.tipoComprobante;  //newwww
-      _rucController.text = lista.first.ruc;
-      _razonController.text = lista.first.razonSocial;
-      _montoController.text = lista.first.monto;
+      defComprobante = lista.first.tipoComprobante!;  //newwww
+      _rucController.text = lista.first.ruc!;
+      _razonController.text = lista.first.razonSocial!;
+      _montoController.text = lista.first.monto!;
 
       setState(() {
         loading = false;
@@ -86,7 +86,7 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
        _savePeajesModel.viajeFk = widget.idViajeW;
       _savePeajesModel.tipoDocGasto = widget.tipoDocGasto;
        _savePeajesModel.fecha = selDate;  //dudadudsoa
@@ -157,7 +157,7 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
                             .map(
                               (e) => DropdownMenuItem(
                             child: Text(
-                              e.destino,
+                              e.destino!,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -166,14 +166,14 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
                           ),
                         )
                             .toList(),
-                        onChanged: (value) {
-                          defDestino = value;
+                        onChanged: (String? value) {
+                          defDestino = value!;
                           List<DestinosPeajesModel> lista = destinos.where((element) => element.id == value).toList();
-                          defComprobante = lista.first.tipoComprobante;
-                          _rucController.text = lista.first.ruc;
-                          _razonController.text = lista.first.razonSocial;
-                          _montoController.text = lista.first.monto;
-                          sDestino = lista.first.destino;
+                          defComprobante = lista.first.tipoComprobante!;
+                          _rucController.text = lista.first.ruc!;
+                          _razonController.text = lista.first.razonSocial!;
+                          _montoController.text = lista.first.monto!;
+                          sDestino = lista.first.destino!;
                           setState(() {});
                         },
                       ),
@@ -185,7 +185,7 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
                             .map(
                               (e) => DropdownMenuItem(
                             child: Text(
-                              e.tipoDescripcion,
+                              e.tipoDescripcion!,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -193,8 +193,8 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
                           ),
                         )
                             .toList(),
-                        onChanged: (value) {
-                          defComprobante = value;
+                        onChanged: (String? value) {
+                          defComprobante = value!;
                           setState(() {});
                         },
 
@@ -314,8 +314,8 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                         ),
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return "Ingresa una Serie";
                           }
                           return null;
@@ -341,8 +341,8 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                         ),
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return "Ingresa un Numero";
                           }
                           return null;
@@ -380,7 +380,7 @@ class _PlanillaPeajesWidgetState extends State<PlanillaPeajesWidget> {
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

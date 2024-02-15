@@ -5,29 +5,29 @@ GuiaModel guiaFromJson(String str) => GuiaModel.fromJson(json.decode(str));
 String guiaToJson(GuiaModel data) => json.encode(data.toJson());
 
 class GuiaModel {
-  String clientes;
-  String codigoHash;
-  String codigoValidacion;
-  String conductores;
-  String estadoSunat;
-  String estadoSunatFk;
-  String fecha;
-  String idClientes;
-  String idConductores;
-  String montoTotal;
-  String numero;
-  String placa;
-  String placaReferencia;
-  String puntoLlegada;
-  String puntoPartida;
-  String serie;
-  String tipoServicio;
-  String tipoServicioId;
-  String tipoSituacion;
-  String tipoSituacionFk;
-  String id;
-  String mensaje;
-  String resultado;
+  String? clientes;
+  String? codigoHash;
+  String? codigoValidacion;
+  String? conductores;
+  String? estadoSunat;
+  String? estadoSunatFk;
+  String? fecha;
+  String? idClientes;
+  String? idConductores;
+  String? montoTotal;
+  String? numero;
+  String? placa;
+  String? placaReferencia;
+  String? puntoLlegada;
+  String? puntoPartida;
+  String? serie;
+  String? tipoServicio;
+  String? tipoServicioId;
+  String? tipoSituacion;
+  String? tipoSituacionFk;
+  String? id;
+  String? mensaje;
+  String? resultado;
 
   GuiaModel({
     this.clientes,
@@ -112,14 +112,14 @@ class GuiaModel {
 
 
 class SubClientesModel {
-  String clientesFk;
-  String clientesFkDesc;
-  String fechaCreacion;
-  String scEstado;
-  String scId;
-  String subClientesFk;
-  String subClientesFkDesc;
-  String usuarioCreacion;
+  String? clientesFk;
+  String? clientesFkDesc;
+  String? fechaCreacion;
+  String? scEstado;
+  String? scId;
+  String? subClientesFk;
+  String? subClientesFkDesc;
+  String? usuarioCreacion;
 
   SubClientesModel({
     this.clientesFk,

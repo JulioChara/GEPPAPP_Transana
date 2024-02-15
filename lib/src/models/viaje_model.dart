@@ -5,23 +5,23 @@ ViajeModel viajeFromJson(String str) => ViajeModel.fromJson(json.decode(str));
 String viajeToJson(ViajeModel data) => json.encode(data.toJson());
 
 class ViajeModel {
-  String ViajId;
-  String correlativo;
-  String conductor;
-  String vehiculo;
-  String origen;
-  String destino;
-  String kilometraje;
-  String kilometrajeFinal;
-  String saldoInicial;
-  String comentarios;
-  String usercreacion;
-  String fechacreacion;
-  String estado;
-  String mensaje;
-  String resultado;
-  String precinto;
-  String precinto2;
+  String? ViajId;
+  String? correlativo;
+  String? conductor;
+  String? vehiculo;
+  String? origen;
+  String? destino;
+  String? kilometraje;
+  String? kilometrajeFinal;
+  String? saldoInicial;
+  String? comentarios;
+  String? usercreacion;
+  String? fechacreacion;
+  String? estado;
+  String? mensaje;
+  String? resultado;
+  String? precinto;
+  String? precinto2;
 
   ViajeModel({
     this.ViajId,

@@ -28,11 +28,11 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
   ReporteServices reporteServices = ReporteServices();
 
   var objDetailServices = new DetailServices();
-  static List<Placa> placas = new List<Placa>();
+  static List<Placa> placas = [];
   GlobalKey<AutoCompleteTextFieldState<Placa>> keyPlaca = new GlobalKey();
-  List<DropdownMenuItem<Placa>> _placaDropdownMenuItems;
+  List<DropdownMenuItem<Placa>>? _placaDropdownMenuItems;
   InformeModel informeModel = new InformeModel();
-  Placa _selectedPlaca;
+  Placa? _selectedPlaca;
   bool loading = true;
   bool isData = true;
   String initDate = DateTime.now().toString().substring(0, 10);
@@ -59,27 +59,27 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
   }
 
   List<DropdownMenuItem<Placa>> buildDropDownMenuItems(List placas) {
-    List<DropdownMenuItem<Placa>> items = List();
+    List<DropdownMenuItem<Placa>> items = [];
     for (Placa placa in placas) {
       items.add(DropdownMenuItem(
         value: placa,
-        child: Text(placa.descripcion),
+        child: Text(placa.descripcion!),
       ));
     }
     return items;
   }
 
-  onChangeDropdownItem(Placa selectedPlaca) {
-    informeModel.vehiculo = selectedPlaca.descripcion;
+  onChangeDropdownItem(Placa? selectedPlaca) {
+    informeModel.vehiculo = selectedPlaca!.descripcion;
     setState(() {
       _selectedPlaca = selectedPlaca;
-      print(_selectedPlaca.descripcion);
+      print(_selectedPlaca!.descripcion);
     });
   }
 
   getDataDocumentGenerate() async {
     List<InformeUnidadReporteModel> list = await reporteServices
-        .getInformeUnidadReporte(_selectedPlaca.descripcion, initDate, endDate);
+        .getInformeUnidadReporte(_selectedPlaca!.descripcion!, initDate, endDate);
 
     final ByteData bytesLogo = await rootBundle.load('assets/logo.jpg');
     final Uint8List byteListLogo = bytesLogo.buffer.asUint8List();
@@ -248,7 +248,7 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                 ),
                 //Detalle
                 ...List.generate(
-                  list[index].detalle.length,
+                  list[index].detalle!.length,
                   (i) => pw.TableRow(
                     children: [
                       pw.Table(
@@ -264,7 +264,7 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text:
-                                          list[index].detalle[i].fechaCreacion,
+                                          list[index].detalle![i].fechaCreacion,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
                                       ),
@@ -284,7 +284,7 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   ),
                                   children: [
                                     pw.TextSpan(
-                                      text: list[index].detalle[i].descripcion,
+                                      text: list[index].detalle![i].descripcion,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
                                       ),
@@ -305,12 +305,12 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text: list[index]
-                                                  .detalle[i]
+                                                  .detalle![i]
                                                   .idResponsableProcesado ==
                                               "0"
                                           ? "-"
                                           : list[index]
-                                              .detalle[i]
+                                              .detalle![i]
                                               .fechaProcesar,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
@@ -332,12 +332,12 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text: list[index]
-                                                  .detalle[i]
+                                                  .detalle![i]
                                                   .idResponsableProcesado ==
                                               "0"
                                           ? "-"
                                           : list[index]
-                                              .detalle[i]
+                                              .detalle![i]
                                               .idResponsableProcesadoDesc,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
@@ -359,12 +359,12 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text: list[index]
-                                                  .detalle[i]
+                                                  .detalle![i]
                                                   .idResponsableSolucionado ==
                                               "0"
                                           ? "-"
                                           : list[index]
-                                              .detalle[i]
+                                              .detalle![i]
                                               .fechaSolucionado,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
@@ -386,12 +386,12 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text: list[index]
-                                              .detalle[i]
-                                              .idResponsableSolucionadoDesc
+                                              .detalle![i]
+                                              .idResponsableSolucionadoDesc!
                                               .isEmpty
                                           ? "-"
                                           : list[index]
-                                              .detalle[i]
+                                              .detalle![i]
                                               .idResponsableSolucionadoDesc,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
@@ -413,12 +413,12 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text: list[index]
-                                                  .detalle[i]
+                                                  .detalle![i]
                                                   .idResponsableSolucionado ==
                                               "0"
                                           ? "-"
                                           : list[index]
-                                              .detalle[i]
+                                              .detalle![i]
                                               .idTipoIncidenciaDesc,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
@@ -442,12 +442,12 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
                                   children: [
                                     pw.TextSpan(
                                       text: list[index]
-                                              .detalle[i]
-                                              .comentarioSolucionado
+                                              .detalle![i]
+                                              .comentarioSolucionado!
                                               .isEmpty
                                           ? "-"
                                           : list[index]
-                                              .detalle[i]
+                                              .detalle![i]
                                               .comentarioSolucionado,
                                       style: pw.TextStyle(
                                         fontWeight: pw.FontWeight.normal,
@@ -810,7 +810,7 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
   }
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -826,7 +826,7 @@ class _InformeUnidadReportePageState extends State<InformeUnidadReportePage> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

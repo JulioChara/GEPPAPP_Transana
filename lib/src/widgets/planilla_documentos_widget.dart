@@ -10,7 +10,7 @@ import 'package:transana_app/src/services/planilla_gastos_services.dart';
 
 class PlanillaDocumentosWidget extends StatefulWidget {
 
-  String idViajeW="";
+  String? idViajeW="";
    PlanillaDocumentosWidget({
      this.idViajeW
    });
@@ -21,10 +21,12 @@ class PlanillaDocumentosWidget extends StatefulWidget {
 
 class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
 
-  static List<PlanillaDocumentosModel> documentos = new List<PlanillaDocumentosModel>(); // Documentos
-  static List<DestinosPeajesModel> destinos = new List<DestinosPeajesModel>(); // destinos
+  static List<PlanillaDocumentosModel> documentos = []; // Documentos
+  static List<DestinosPeajesModel> destinos = []; // destinos
 
-  AutoCompleteTextField searchDestino;
+  GlobalKey<AutoCompleteTextFieldState<DestinosPeajesModel>> keyDestinos = new GlobalKey();
+
+  AutoCompleteTextField? searchDestino;
   var objDetailServices = new PlanillaGastosServices();
   String idDocumentoDef = ""; //
   var loading = true;
@@ -47,7 +49,7 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
       documentos = await objDetailServices.getPlanillasDocumentos();
       destinos = await objDetailServices.getPeajesDestinos();
 
-      idDocumentoDef = documentos[0].tipoId;  // para que la lista no empieze en nada
+      idDocumentoDef = documentos[0].tipoId!;  // para que la lista no empieze en nada
 
       print("minisisnaDIS");
       print(documentos[0].tipoId);
@@ -95,7 +97,7 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -103,8 +105,8 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    idDocumentoDef = value;
+                  onChanged: (String? value) {
+                    idDocumentoDef = value!;
                     setState(() {});
                   },
                 ),
@@ -145,10 +147,10 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
 
 
 
-  AutoCompleteTextField<DestinosPeajesModel> fieldPeajesDestinos() {
+  AutoCompleteTextField <DestinosPeajesModel> fieldPeajesDestinos() {
     //widget.idAccion != 3 ?
     return AutoCompleteTextField<DestinosPeajesModel>(
-   //   key: keyEmpleado,
+      key: keyDestinos,
       clearOnSubmit: false,
       suggestions: destinos,
       style: TextStyle(color: Colors.black54, fontSize: 16.0),
@@ -168,16 +170,16 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.destino.toLowerCase().contains(query.toLowerCase());
+        return item.destino!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.destino.compareTo(b.destino);
+        return a.destino!.compareTo(b.destino!);
       },
       itemSubmitted: (item) {
-        print("Obtenemos:"+ item.destino);
+        print("Obtenemos:"+ item.destino!);
         setState(() {
-          print("Obtenemos:"+ item.destino);
-          searchDestino.textField.controller.text = item.destino;
+          print("Obtenemos:"+ item.destino!);
+          searchDestino!.textField!.controller!.text = item.destino!;
 
        //   idPeaje = item.id;
         });
@@ -198,7 +200,7 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
         children: <Widget>[
           Expanded(
             child: Text(
-              peajes.destino,
+              peajes.destino!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,
@@ -212,7 +214,7 @@ class _PlanillaDocumentosWidgetState extends State<PlanillaDocumentosWidget> {
           ),
           Flexible(
             child: Text(
-              peajes.monto,
+              peajes.monto!,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Colors.black54,

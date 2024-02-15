@@ -5,9 +5,9 @@ import 'package:transana_app/src/services/empleado_services.dart';
 import 'package:transana_app/src/services/informe_proceso_services.dart';
 
 class ObservacionDialogWidget extends StatefulWidget {
-  String idCabezera;
-  String idDetalle;
-  int idAccion;
+  String? idCabezera;
+  String? idDetalle;
+  int? idAccion;
 
   ObservacionDialogWidget({
     this.idCabezera,
@@ -40,13 +40,13 @@ class _ObservacionDialogWidgetState extends State<ObservacionDialogWidget> {
   getData() {
     _empleadoService.getEmpleadosList().then((value) {
       empleadoList = value;
-      valueInit = empleadoList[0].entiId;
+      valueInit = empleadoList[0].entiId!;
       setState(() {});
     });
   }
 
   void registrar(){
-    if(formKey.currentState.validate()){
+    if(formKey.currentState!.validate()){
 
       _procesoInformeModel.idCabezera = widget.idCabezera;
       _procesoInformeModel.idDetalle = widget.idDetalle;
@@ -95,7 +95,7 @@ class _ObservacionDialogWidgetState extends State<ObservacionDialogWidget> {
                   .map(
                     (e) => DropdownMenuItem(
                       child: Text(
-                        e.entiRazonSocial,
+                        e.entiRazonSocial!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -103,8 +103,8 @@ class _ObservacionDialogWidgetState extends State<ObservacionDialogWidget> {
                     ),
                   )
                   .toList(),
-              onChanged: (value) {
-                valueInit = value;
+              onChanged: (String? value) {
+                valueInit = value!;
                 setState(() {});
               },
             ) : Container(),
@@ -141,9 +141,9 @@ class _ObservacionDialogWidgetState extends State<ObservacionDialogWidget> {
                   ),
                 ),
               ),
-              validator: (String value){
+              validator: (String? value){
 
-                if(value.isEmpty){
+                if(value!.isEmpty){
                   return "Ingresa una observación";
                 }
 

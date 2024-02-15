@@ -58,7 +58,7 @@ class _GuiaPageState extends State<GuiaPage> {
     );
   }
 
-  Widget _callPage(int paginaActual) {
+  Widget? _callPage(int paginaActual) {
     switch (paginaActual) {
       case 0:
         return GeneralPage();

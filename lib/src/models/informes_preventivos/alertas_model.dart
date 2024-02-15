@@ -19,20 +19,20 @@ class AlertasListadoModel {
     this.resultado,
   });
 
-  String documento;
-  String fechaCaducidad;
-  String kmActual;
-  String kmCaducidad;
-  String kmMantenimiento;
-  String alertaKM;
-  String documentoGeneral;
-  String tipoDocumentoFk;
-  String tipoDocumentoFkDesc;
-  String vehiId;
-  String idTab;
-  String estadoAlerta;
-  String mensaje;
-  String resultado;
+  String? documento;
+  String? fechaCaducidad;
+  String? kmActual;
+  String? kmCaducidad;
+  String? kmMantenimiento;
+  String? alertaKM;
+  String? documentoGeneral;
+  String? tipoDocumentoFk;
+  String? tipoDocumentoFkDesc;
+  String? vehiId;
+  String? idTab;
+  String? estadoAlerta;
+  String? mensaje;
+  String? resultado;
 
   factory AlertasListadoModel.fromJson(Map<String, dynamic> json) => AlertasListadoModel(
     documento: json["Documento"],
@@ -80,6 +80,7 @@ class TiposModel {
     this.usuario,
     this.tipoDescripcion,
     this.tipoId,
+    this.extraNumero,
     this.mensaje,
     this.resultado,
   });
@@ -87,15 +88,16 @@ class TiposModel {
 
 
 
-  String idAccion;
-  String tipoDescripcionCorta;
-  String idTipoGeneralFk;
-  String idTipoGeneralFkDesc;
-  String usuario;
-  String tipoDescripcion;
-  String tipoId;
-  String mensaje;
-  String resultado;
+  String? idAccion;
+  String? tipoDescripcionCorta;
+  String? idTipoGeneralFk;
+  String? idTipoGeneralFkDesc;
+  String? usuario;
+  String? tipoDescripcion;
+  String? tipoId;
+  String? extraNumero;
+  String? mensaje;
+  String? resultado;
 
   factory TiposModel.fromJson(Map<String, dynamic> json) => TiposModel(
     idAccion: json["idAccion"],
@@ -105,6 +107,7 @@ class TiposModel {
     usuario: json["usuario"],
     tipoDescripcion: json["TipoDescripcion"],
     tipoId: json["TipoId"],
+    extraNumero: json["extraNumero"],
     mensaje: json["mensaje"],
     resultado: json["resultado"],
   );
@@ -117,6 +120,7 @@ class TiposModel {
     "usuario": usuario,
     "TipoDescripcion": tipoDescripcion,
     "TipoId": tipoId,
+    "extraNumero": extraNumero,
     "mensaje": mensaje,
     "resultado": resultado,
   };
@@ -139,14 +143,14 @@ class AlertasDocumentosModel {
     this.idC,
   });
 
-  String idAccion;
-  String vehiculoFk;
-  String tipoDocFk;
-  String documemtoRef;
-  String fechaEmision;
-  String fechaCaducidad;
-  String usuario;
-  String idC;
+  String? idAccion;
+  String? vehiculoFk;
+  String? tipoDocFk;
+  String? documemtoRef;
+  String? fechaEmision;
+  String? fechaCaducidad;
+  String? usuario;
+  String? idC;
 
   factory AlertasDocumentosModel.fromJson(Map<String, dynamic> json) => AlertasDocumentosModel(
     idAccion: json["IdAccion"],
@@ -190,17 +194,17 @@ class AlertasMantenimientosModel {
     this.idC,
   });
 
-  int idAccion;
-  String vehiculoFk;
-  String tipoDocFk;
-  String tipoControl;
-  String fechaEmision;
-  String fechaCaducidad;
-  String kilometroInicial;
-  String kilometroMantenimiento;
-  String kilometroCaducidad;
-  String usuario;
-  String idC;
+  int? idAccion;
+  String? vehiculoFk;
+  String? tipoDocFk;
+  String? tipoControl;
+  String? fechaEmision;
+  String? fechaCaducidad;
+  String? kilometroInicial;
+  String? kilometroMantenimiento;
+  String? kilometroCaducidad;
+  String? usuario;
+  String? idC;
 
   factory AlertasMantenimientosModel.fromJson(Map<String, dynamic> json) => AlertasMantenimientosModel(
     idAccion: json["IdAccion"],
@@ -235,11 +239,11 @@ class AlertasMantenimientosModel {
 
 
 class SubProductosModel {
-  String tipoDescripcion;
-  String tipoDescripcionCorta;
-  String tipoEstado;
-  String tipoId;
-  String tiposGeneralFk;
+  String? tipoDescripcion;
+  String? tipoDescripcionCorta;
+  String? tipoEstado;
+  String? tipoId;
+  String? tiposGeneralFk;
 
   SubProductosModel({
     this.tipoDescripcion,

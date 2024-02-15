@@ -14,7 +14,7 @@ class ViajeService {
     try {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String  idUser =  prefs.getString('idUser') ;
+      String  idUser =  prefs.getString('idUser')!;
 
       // var resp = await http.post(kUrl+"/ListadoViajes",
       String url = kUrl + "/ListadoViajes";
@@ -27,7 +27,7 @@ class ViajeService {
 
       var decodeData = json.decode(resp.body);
 
-      final List<ViajeModel> viajes = new List();
+      final List<ViajeModel> viajes = [];
 
       decodeData.forEach((viajeMap) {
         final prodTemp = ViajeModel.fromJson(viajeMap);
@@ -36,6 +36,7 @@ class ViajeService {
       return viajes;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -60,6 +61,7 @@ class ViajeService {
 
     }catch(e){
       print(e);
+      return "0";
     }
 
   }
@@ -95,6 +97,7 @@ class ViajeService {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -124,6 +127,7 @@ class ViajeService {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

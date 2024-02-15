@@ -9,7 +9,7 @@ import 'package:transana_app/src/services/informe_detalle_services.dart';
 
 class ObservacionEstadoDetalleDialog extends StatefulWidget {
 
-  String idDetalle;
+  String? idDetalle;
 
   ObservacionEstadoDetalleDialog({
     this.idDetalle
@@ -22,7 +22,7 @@ class ObservacionEstadoDetalleDialog extends StatefulWidget {
 class _ObservacionEstadoDetalleDialogState extends State<ObservacionEstadoDetalleDialog> {
   bool loading = true;
 
-  static List<InformeDetalleModel> detallesxId = new List<InformeDetalleModel>(); // Informe incidencias
+  static List<InformeDetalleModel> detallesxId = []; // Informe incidencias
 
   var objInformeDetalleServices = new InformeDetalleService(); //
 
@@ -32,15 +32,15 @@ class _ObservacionEstadoDetalleDialogState extends State<ObservacionEstadoDetall
   void initState() {
     // TODO: implement initState
     super.initState();
-    print("Obtenemos:" + widget.idDetalle);
+    print("Obtenemos:" + widget.idDetalle!);
     getData();
   }
 
 
   void getData() async {
     try {
-      detallesxId = await objInformeDetalleServices.getInformeDetallesxId(widget.idDetalle);
-      idDetalle = detallesxId[0].idDetalle;
+      detallesxId = await objInformeDetalleServices.getInformeDetallesxId(widget.idDetalle!);
+      idDetalle = detallesxId[0].idDetalle!;
 
       setState(() {
         loading = false;
@@ -67,7 +67,7 @@ class _ObservacionEstadoDetalleDialogState extends State<ObservacionEstadoDetall
               SizedBox(
                 height: 12.0,
               ),
-              Text(detallesxId[0].idTipoEstadoAtencionDesc, style: TextStyle(fontSize: 20),),
+              Text(detallesxId[0].idTipoEstadoAtencionDesc!, style: TextStyle(fontSize: 20),),
               SizedBox(height: 12.0,),
 
               //PLACA

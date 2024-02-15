@@ -36,7 +36,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
   TextEditingController _numeroController = TextEditingController();
   TextEditingController _montoController = TextEditingController();
 
-  AutoCompleteTextField searchEntidad;
+  AutoCompleteTextField? searchEntidad;
   GlobalKey<AutoCompleteTextFieldState<EmpleadoModel>> keyEntidad = new GlobalKey();
 
   PlanillaGastosServices _planillaServices = PlanillaGastosServices();
@@ -45,9 +45,8 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
   String selDate = DateTime.now().toString().substring(0, 10);
 
   static PlanillaGastosConsultaSunatModel consultaRuc = new PlanillaGastosConsultaSunatModel();
-  static List<EmpleadoModel> entidades = new List<EmpleadoModel>(); // empl
-  static List<PlanillaComprobantesModel> comprobantes =
-  new List<PlanillaComprobantesModel>();
+  static List<EmpleadoModel> entidades = []; // empl
+  static List<PlanillaComprobantesModel> comprobantes =[];
 
   ViajeDocumentosModel _viajeDocumentosModel = new ViajeDocumentosModel();
 
@@ -63,7 +62,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
     try {
       entidades = await _planillaServices.getEntidadesList();
       comprobantes = await objPlanillaGastosServices.getTiposComprobantes();
-      defComprobante = comprobantes[0].tipoId;
+      defComprobante = comprobantes[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -78,7 +77,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
 
   void consultaSunat(String ruc) async {
     consultaRuc = await objPlanillaGastosServices.getConsultaSunat(ruc);
-    _razonController.text = consultaRuc.razonSocial;  //newwww
+    _razonController.text = consultaRuc.razonSocial!;  //newwww
     idEntidad = "0";  // sera enciado y se analizara al crear la entidad xd
 
     setState(() {
@@ -90,7 +89,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
 
       _viajeDocumentosModel.tipoDocumentoFk = defComprobante;
       _viajeDocumentosModel.ruc = _rucController.text;
@@ -158,7 +157,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -166,8 +165,8 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    defComprobante = value;
+                  onChanged: (String? value) {
+                    defComprobante = value!;
                     setState(() {});
                   },
                 ),
@@ -204,8 +203,8 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Razon Social";
                     }
                     return null;
@@ -272,8 +271,8 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Serie";
                     }
                     return null;
@@ -305,8 +304,8 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Numero";
                     }
                     return null;
@@ -335,8 +334,8 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Numero";
                     }
                     return null;
@@ -442,16 +441,16 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
       ),
       itemFilter: (item, query) {
         //return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
-        return item.entiNroDocumento.toLowerCase().contains(query.toLowerCase());
+        return item.entiNroDocumento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEntidad.textField.controller.text = item.entiNroDocumento;
-          _razonController.text = item.entiRazonSocial;
-          idEntidad = item.entiId;
+          searchEntidad!.textField!.controller!.text = item.entiNroDocumento!;
+          _razonController.text = item.entiRazonSocial!;
+          idEntidad = item.entiId!;
         });
       },
       itemBuilder: (context, item) {
@@ -469,7 +468,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
         children: <Widget>[
           Expanded(
             child: Text(
-              entidad.entiRazonSocial,
+              entidad.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,
@@ -487,7 +486,7 @@ class _ViajesCrearDocumentoWidgetState extends State<ViajesCrearDocumentoWidget>
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(selDate),

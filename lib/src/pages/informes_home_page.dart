@@ -15,9 +15,9 @@ class _InformesHomePageState extends State<InformesHomePage> {
 
   Future<String> getIdRol() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    widget.rolcito = prefs.getString('rolId');
+    widget.rolcito = prefs.getString('rolId')!;
     print(prefs.getString('rolId'));
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
   // void test(){
   //   SharedPreferences prefs =  SharedPreferences.getInstance();

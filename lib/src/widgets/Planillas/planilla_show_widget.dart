@@ -5,8 +5,8 @@ import 'package:transana_app/src/models/planilla_gastos_model.dart';
 import 'package:transana_app/src/services/planilla_gastos_services.dart';
 
 class PlanillaShowWidget extends StatefulWidget {
-  String tipoDoc = "";
-  String idPla = "";
+  String? tipoDoc = "";
+  String? idPla = "";
   PlanillaShowWidget({this.tipoDoc, this.idPla});
 
   @override
@@ -17,8 +17,7 @@ class _PlanillaShowWidgetState extends State<PlanillaShowWidget> {
   final formKey = GlobalKey<FormState>();
   var loading = true;
 
-  static List<PlanillaGastosVisorModel> visor =
-      new List<PlanillaGastosVisorModel>();
+  static List<PlanillaGastosVisorModel> visor =[];
 
   var objPlanillaGastosServices = new PlanillaGastosServices(); //
 
@@ -39,27 +38,27 @@ class _PlanillaShowWidgetState extends State<PlanillaShowWidget> {
     // TODO: implement initState
     super.initState();
     getData();
-    print("TIPO DOCUMEMTO: " + widget.tipoDoc);
-    print("ID PLANILLA: " + widget.idPla);
+    print("TIPO DOCUMEMTO: " + widget.tipoDoc!);
+    print("ID PLANILLA: " + widget.idPla!);
   }
 
   void getData() async {
     try {
       print("entro a consultar");
       visor = await objPlanillaGastosServices.getPlanillaGastosVisor(
-          widget.tipoDoc, widget.idPla);
+          widget.tipoDoc!, widget.idPla!);
 
-      _nroPlanillaController.text = visor[0].numeroPlanilla;
-      _lugarController.text = visor[0].lugar;
-      _tipoComSerController.text = visor[0].tipoComSer;
-      _fechaDocController.text = visor[0].fechaDoc;
-      _comprobanteDocController.text = visor[0].tipoComprobante;
-      _rucController.text = visor[0].ruc;
-      _razonController.text = visor[0].razonSocial;
-      _serieController.text = visor[0].serie;
-      _numeroController.text = visor[0].numero;
-      _montoController.text = visor[0].monto;
-      _descripcionController.text = visor[0].descripcion;
+      _nroPlanillaController.text = visor[0].numeroPlanilla!;
+      _lugarController.text = visor[0].lugar!;
+      _tipoComSerController.text = visor[0].tipoComSer!;
+      _fechaDocController.text = visor[0].fechaDoc!;
+      _comprobanteDocController.text = visor[0].tipoComprobante!;
+      _rucController.text = visor[0].ruc!;
+      _razonController.text = visor[0].razonSocial!;
+      _serieController.text = visor[0].serie!;
+      _numeroController.text = visor[0].numero!;
+      _montoController.text = visor[0].monto!;
+      _descripcionController.text = visor[0].descripcion!;
 
       setState(() {
         loading = false;

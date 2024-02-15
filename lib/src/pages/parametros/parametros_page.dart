@@ -35,7 +35,7 @@ class _ParametrosPageState extends State<ParametrosPage> {
 
   Future<String> getIdRol() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
 
   getData() {

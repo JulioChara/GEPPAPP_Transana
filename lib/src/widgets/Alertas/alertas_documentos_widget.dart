@@ -11,7 +11,7 @@ import 'package:transana_app/src/services/informes_preventivos_services.dart';
 class AlertasDocumentosWidget extends StatefulWidget {
 
 
-  String idVehi = "";
+  String? idVehi = "";
   AlertasDocumentosWidget({this.idVehi});
 
   @override
@@ -21,7 +21,7 @@ class AlertasDocumentosWidget extends StatefulWidget {
 class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
 
 
-  static List<TiposModel> tipos = new List<TiposModel>();
+  static List<TiposModel> tipos = [];
   final formKey = GlobalKey<FormState>();
   var loading = true;
   var defTipo = "";
@@ -50,7 +50,7 @@ class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
     try {
 
       tipos = await objTipos.getAlertasTiposDocumentos();
-      defTipo = tipos[0].tipoId;
+      defTipo = tipos[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -64,7 +64,7 @@ class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _saveDocumentoModel.idAccion = "1";
       _saveDocumentoModel.vehiculoFk = widget.idVehi;
       _saveDocumentoModel.tipoDocFk = defTipo.toString();
@@ -115,7 +115,7 @@ class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -124,8 +124,8 @@ class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    defTipo = value;
+                  onChanged: (String? value) {
+                    defTipo = value!;
                     // List<PlanillaComprobantesModel> lista = destinos.where((element) => element.id == value).toList();
                     // _rucController.text = lista.first.ruc;
                     // _montoController.text = lista.first.monto;
@@ -265,7 +265,7 @@ class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
 
 
   Future<Null> _selectSelDateini(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         //initialDate: new DateTime.now(),
@@ -285,7 +285,7 @@ class _AlertasDocumentosWidgetState extends State<AlertasDocumentosWidget> {
 
 
   Future<Null> _selectSelDatefin(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(selDatefin),

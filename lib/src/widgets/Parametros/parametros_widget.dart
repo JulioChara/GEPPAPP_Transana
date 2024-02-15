@@ -29,7 +29,7 @@ class _ParametrosWidgetState extends State<ParametrosWidget> {
   TextEditingController _descripcionController = TextEditingController();
 
 
-  static List<TiposModel> tiposgeneral = new List<TiposModel>();
+  static List<TiposModel> tiposgeneral = [];
   TiposModel _tiposModel = new TiposModel();
 
   @override
@@ -42,7 +42,7 @@ class _ParametrosWidgetState extends State<ParametrosWidget> {
   void getData() async {
     try {
       tiposgeneral = await parametrosServices.getTiposEditableList();
-      defTipoGeneral = tiposgeneral[0].tipoId;
+      defTipoGeneral = tiposgeneral[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -54,7 +54,7 @@ class _ParametrosWidgetState extends State<ParametrosWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
 
       _tiposModel.idAccion =  "1";
       _tiposModel.idTipoGeneralFk = defTipoGeneral;
@@ -118,7 +118,7 @@ class _ParametrosWidgetState extends State<ParametrosWidget> {
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -126,8 +126,8 @@ class _ParametrosWidgetState extends State<ParametrosWidget> {
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    defTipoGeneral = value;
+                  onChanged: (String? value) {
+                    defTipoGeneral = value!;
                     setState(() {});
                   },
                 ),
@@ -182,8 +182,8 @@ class _ParametrosWidgetState extends State<ParametrosWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Descripcion";
                     }
                     return null;

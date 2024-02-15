@@ -12,7 +12,7 @@ import 'package:transana_app/src/services/informes_preventivos_services.dart';
 
 class AlertasActualizarKM extends StatefulWidget {
 
-  String idVeh = "";
+  String? idVeh = "";
   AlertasActualizarKM({this.idVeh});
 
   @override
@@ -49,7 +49,7 @@ class _AlertasActualizarKMState extends State<AlertasActualizarKM> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
+    String id = await prefs.getString("idUser")!;
     loading = false;
     setState(() {});
   }
@@ -57,7 +57,7 @@ class _AlertasActualizarKMState extends State<AlertasActualizarKM> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _updateAlertaManModel.idC = widget.idVeh;
       _updateAlertaManModel.vehiculoFk = widget.idVeh;
       _updateAlertaManModel.kilometroMantenimiento = kmActualizarEditingController.text;

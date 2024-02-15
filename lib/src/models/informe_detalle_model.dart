@@ -31,34 +31,34 @@ class InformeDetalleModel {
     this.resultado,
   });
 
-  String comentarioAnulado;
-  String comentarioProcesado;
-  String comentarioSolucionado;
-  String descripcion;
-  String fechaAnulado;
-  String fechaCreacion;
-  String fechaModificacion;
-  String fechaProcesar;
-  String fechaSolucionado;
-  dynamic idAccion;
-  String idCabezera;
-  String Placa;
-  String Conductor;
-  String idDetalle;
-  String idResponsableProcesado;
-  String idResponsableProcesadoDesc;
-  String idResponsableSolucionado;
-  String idResponsableSolucionadoDesc;
-  String idTipoEstadoAtencion;
-  String idTipoEstadoAtencionDesc;
-  String idTipoIncidencia;
-  String idTipoIncidenciaDesc;
-  String idUsuarioAnulado;
-  String idUsuarioAnuladoDesc;
-  String idUsuarioCreacion;
-  String idUsuarioCreacionDesc;
-  String mensaje;
-  String resultado;
+  String? comentarioAnulado;
+  String? comentarioProcesado;
+  String? comentarioSolucionado;
+  String? descripcion;
+  String? fechaAnulado;
+  String? fechaCreacion;
+  String? fechaModificacion;
+  String? fechaProcesar;
+  String? fechaSolucionado;
+  String? idAccion;
+  String? idCabezera;
+  String? Placa;
+  String? Conductor;
+  String? idDetalle;
+  String? idResponsableProcesado;
+  String? idResponsableProcesadoDesc;
+  String? idResponsableSolucionado;
+  String? idResponsableSolucionadoDesc;
+  String? idTipoEstadoAtencion;
+  String? idTipoEstadoAtencionDesc;
+  String? idTipoIncidencia;
+  String? idTipoIncidenciaDesc;
+  String? idUsuarioAnulado;
+  String? idUsuarioAnuladoDesc;
+  String? idUsuarioCreacion;
+  String? idUsuarioCreacionDesc;
+  String? mensaje;
+  String? resultado;
 
   factory InformeDetalleModel.fromJson(Map<String, dynamic> json) => InformeDetalleModel(
     comentarioAnulado: json["ComentarioAnulado"],

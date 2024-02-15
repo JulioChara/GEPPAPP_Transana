@@ -8,8 +8,8 @@ import 'package:transana_app/src/models/planilla_gastos_model.dart';
 import 'package:transana_app/src/services/planilla_gastos_services.dart';
 
 class PlanillaEstacionamientoWidget extends StatefulWidget {
-  String idViajeW = "";
-  String tipoDocGasto = "";
+  String? idViajeW = "";
+  String? tipoDocGasto = "";
   PlanillaEstacionamientoWidget({this.idViajeW, this.tipoDocGasto});
 
   @override
@@ -26,11 +26,11 @@ class _PlanillaEstacionamientoWidgetState
 
   var objPlanillaGastosServices = new PlanillaGastosServices(); //
 
-  static List<EmpleadoModel> entidades = new List<EmpleadoModel>(); // empleado
+  static List<EmpleadoModel> entidades = []; // empleado
   GlobalKey<AutoCompleteTextFieldState<EmpleadoModel>> keyEntidad =
       new GlobalKey();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  AutoCompleteTextField searchEntidad;
+  AutoCompleteTextField? searchEntidad;
   String idEntidad = "";
 
   String selDate = DateTime.now().toString().substring(0, 10);
@@ -53,8 +53,7 @@ class _PlanillaEstacionamientoWidgetState
       PlanillaGastosEstacionamientoModel();
   PlanillaGastosServices _saveEstacionamientoServices =
       PlanillaGastosServices();
-  static List<PlanillaComprobantesModel> comprobantes =
-      new List<PlanillaComprobantesModel>();
+  static List<PlanillaComprobantesModel> comprobantes =[];
 
   @override
   void initState() {
@@ -68,7 +67,7 @@ class _PlanillaEstacionamientoWidgetState
     try {
       entidades = await _saveEstacionamientoServices.getEntidadesList();
       comprobantes = await objPlanillaGastosServices.getTiposComprobantes();
-      defComprobante = comprobantes[0].tipoId;
+      defComprobante = comprobantes[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -80,7 +79,7 @@ class _PlanillaEstacionamientoWidgetState
 
   void consultaSunat(String ruc) async {
     consultaRuc = await objPlanillaGastosServices.getConsultaSunat(ruc);
-    _opcrazonController.text = consultaRuc.razonSocial; //newwww
+    _opcrazonController.text = consultaRuc.razonSocial!; //newwww
     idEntidad = "0";
     setState(() {
       loading = false;
@@ -88,7 +87,7 @@ class _PlanillaEstacionamientoWidgetState
   }
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _saveEstacionamientoModel.viajeFk = widget.idViajeW;
       _saveEstacionamientoModel.tipoDocGasto = widget.tipoDocGasto;
       _saveEstacionamientoModel.concepto = _descripcionController.text;
@@ -193,8 +192,8 @@ class _PlanillaEstacionamientoWidgetState
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                         ),
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return "Ingresa un Monto";
                           }
                           return null;
@@ -239,7 +238,7 @@ class _PlanillaEstacionamientoWidgetState
                                   .map(
                                     (e) => DropdownMenuItem(
                                       child: Text(
-                                        e.tipoDescripcion,
+                                        e.tipoDescripcion!,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -247,8 +246,8 @@ class _PlanillaEstacionamientoWidgetState
                                     ),
                                   )
                                   .toList(),
-                              onChanged: (value) {
-                                defComprobante = value;
+                              onChanged: (String? value) {
+                                defComprobante = value!;
                                 setState(() {});
                               },
                             )
@@ -361,8 +360,8 @@ class _PlanillaEstacionamientoWidgetState
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              validator: (String value) {
-                                if (value.isEmpty) {
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
                                   return "Ingrese una Razon Social";
                                 }
                                 return null;
@@ -395,8 +394,8 @@ class _PlanillaEstacionamientoWidgetState
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              validator: (String value) {
-                                if (value.isEmpty) {
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
                                   return "Ingrese una Serie";
                                 }
                                 return null;
@@ -429,8 +428,8 @@ class _PlanillaEstacionamientoWidgetState
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              validator: (String value) {
-                                if (value.isEmpty) {
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
                                   return "Ingrese un Numero";
                                 }
                                 return null;
@@ -492,7 +491,7 @@ class _PlanillaEstacionamientoWidgetState
   }
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -544,18 +543,18 @@ class _PlanillaEstacionamientoWidgetState
       ),
       itemFilter: (item, query) {
         //return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
-        return item.entiNroDocumento
+        return item.entiNroDocumento!
             .toLowerCase()
             .contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEntidad.textField.controller.text = item.entiNroDocumento;
-          _opcrazonController.text = item.entiRazonSocial;
-          idEntidad = item.entiId;
+          searchEntidad!.textField!.controller!.text = item.entiNroDocumento!;
+          _opcrazonController.text = item.entiRazonSocial!;
+          idEntidad = item.entiId!;
         });
       },
       itemBuilder: (context, item) {
@@ -573,7 +572,7 @@ class _PlanillaEstacionamientoWidgetState
         children: <Widget>[
           Expanded(
             child: Text(
-              empleado.entiRazonSocial,
+              empleado.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,

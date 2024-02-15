@@ -11,7 +11,7 @@ class AlertasRenovarDocumento extends StatefulWidget {
 
 
 
-  String idDoc = "";
+  String? idDoc = "";
   AlertasRenovarDocumento({this.idDoc});
 
   @override
@@ -43,7 +43,7 @@ class _AlertasRenovarDocumentoState extends State<AlertasRenovarDocumento> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
+    String id = await prefs.getString("idUser")!;
  //   String idV = await prefs.getString("IdVehiculo");
 
   //  print(idV);
@@ -55,7 +55,7 @@ class _AlertasRenovarDocumentoState extends State<AlertasRenovarDocumento> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _updateAlertaDocModel.idC = widget.idDoc;
       _updateAlertaDocModel.fechaEmision = selDateini;
       _updateAlertaDocModel.fechaCaducidad = selDatefin;
@@ -204,7 +204,7 @@ class _AlertasRenovarDocumentoState extends State<AlertasRenovarDocumento> {
 
 
   Future<Null> _selectSelDateini(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         //initialDate: new DateTime.now(),
@@ -224,7 +224,7 @@ class _AlertasRenovarDocumentoState extends State<AlertasRenovarDocumento> {
 
 
   Future<Null> _selectSelDatefin(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(selDatefin),

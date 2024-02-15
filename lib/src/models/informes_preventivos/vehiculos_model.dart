@@ -24,24 +24,24 @@ class VehiculosModel {
     this.resultado,
   });
 
-  dynamic empresasFk;
-  dynamic observaciones;
-  String tipoServicioVehiculoFk;
-  String tipoServicioVehiculoFkDesc;
-  dynamic vehiCapacidad;
-  dynamic vehiCertificado;
-  String vehiEstado;
-  dynamic vehiFecCreacion;
-  dynamic vehiFecModificacion;
-  String vehiId;
-  String vehiMarca;
-  String vehiModelo;
-  String vehiPlaca;
-  dynamic vehiPromedio;
-  dynamic vehiUsrCreacion;
-  dynamic vehiUsrModificacion;
-  String mensaje;
-  String resultado;
+  String? empresasFk;
+  String? observaciones;
+  String? tipoServicioVehiculoFk;
+  String? tipoServicioVehiculoFkDesc;
+  String? vehiCapacidad;
+  String? vehiCertificado;
+  String? vehiEstado;
+  String? vehiFecCreacion;
+  String? vehiFecModificacion;
+  String? vehiId;
+  String? vehiMarca;
+  String? vehiModelo;
+  String? vehiPlaca;
+  String? vehiPromedio;
+  String? vehiUsrCreacion;
+  String? vehiUsrModificacion;
+  String? mensaje;
+  String? resultado;
 
   factory VehiculosModel.fromJson(Map<String, dynamic> json) => VehiculosModel(
     empresasFk: json["EmpresasFk"],

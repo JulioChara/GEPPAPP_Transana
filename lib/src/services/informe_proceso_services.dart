@@ -45,6 +45,9 @@ class InformeProcesoService{
       print(response.body);
       return myMap["resultado"];
     }
+    else{
+      return "0";
+    }
 
   }
 

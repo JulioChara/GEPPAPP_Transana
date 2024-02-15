@@ -13,7 +13,7 @@ class ConsumoService {
     try {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String  idViaje =  prefs.getString('IdVijae') ;
+      String  idViaje =  prefs.getString('IdVijae')!;
 
       // var resp = await http.post(kUrl+"/ListadoConsumos",
       String url = kUrl + "/ListadoConsumos";
@@ -27,7 +27,7 @@ class ConsumoService {
 
       var decodeData = json.decode(resp.body);
 
-      final List<consumoModel> consumos = new List();
+      final List<consumoModel> consumos = [];
 
       decodeData.forEach((consumoMap) {
         final prodTemp = consumoModel.fromJson(consumoMap);
@@ -36,6 +36,7 @@ class ConsumoService {
       return consumos;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -59,6 +60,7 @@ class ConsumoService {
 
     }catch(e){
       print(e);
+      return "0";
     }
 
   }
@@ -93,6 +95,7 @@ class ConsumoService {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

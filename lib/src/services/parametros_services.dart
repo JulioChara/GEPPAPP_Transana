@@ -67,6 +67,7 @@ class ParametrosServices
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

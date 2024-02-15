@@ -21,13 +21,13 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
   bool loading = true;
   bool loadingSend = false;
 
-  static List<Placa> placas = new List<Placa>();
+  static List<Placa> placas = [];
   GlobalKey<AutoCompleteTextFieldState<Placa>> keyPlaca = new GlobalKey();
 
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AutoCompleteTextField searchPlaca;
+  AutoCompleteTextField? searchPlaca;
   TextEditingController origenEditingController = new TextEditingController();
   TextEditingController destinoEditingController = new TextEditingController();
   TextEditingController kilometrajeEditingController = new TextEditingController();
@@ -42,8 +42,8 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
 
   ViajeModel viajeModel = new ViajeModel();
 
-  Placa _selectedPlaca;
-  List<DropdownMenuItem<Placa>> _placaDropdownMenuItems;
+  Placa? _selectedPlaca;
+  List<DropdownMenuItem<Placa>>? _placaDropdownMenuItems;
 
   void getData() async {
     try {
@@ -67,19 +67,19 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
   }
 
   List<DropdownMenuItem<Placa>> buildDropDownMenuItems(List placas) {
-    List<DropdownMenuItem<Placa>> items = List();
+    List<DropdownMenuItem<Placa>> items = [];
     for (Placa placa in placas) {
-      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion),));
+      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion!),));
     }
     return items;
   }
 
 
-  onChangeDropdownItem(Placa selectedPlaca) {
-    viajeModel.vehiculo = selectedPlaca.descripcion;
+  onChangeDropdownItem(Placa? selectedPlaca) {
+    viajeModel.vehiculo = selectedPlaca!.descripcion;
     setState(() {
       _selectedPlaca = selectedPlaca;
-      print(_selectedPlaca.descripcion);
+      print(_selectedPlaca!.descripcion);
 
     });
   }
@@ -384,7 +384,7 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
     ViajeService service = new ViajeService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
+    String id = await prefs.getString("idUser")!;
     print(id);
     viajeModel.usercreacion = id;
 
@@ -477,14 +477,14 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchPlaca.textField.controller.text = item.descripcion;
+          searchPlaca!.textField!.controller!.text = item.descripcion!;
           viajeModel.vehiculo = item.descripcion;
         });
       },
@@ -504,7 +504,7 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              placa.descripcion,
+              placa.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -517,7 +517,7 @@ class _ViajeCreatePageState extends State<ViajeCreatePage> {
           ),
           Flexible(
             child: Text(
-              placa.categoria,
+              placa.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,

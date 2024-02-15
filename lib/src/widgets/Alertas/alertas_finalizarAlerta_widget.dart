@@ -10,8 +10,8 @@ import 'package:transana_app/src/widgets/mensaje_widget.dart';
 class FinalizarAlertaWidget extends StatefulWidget {
 
 
-  String tipoSub = "";
-  String idTab="";
+  String? tipoSub = "";
+  String? idTab="";
   FinalizarAlertaWidget({
     this.tipoSub,
     this.idTab
@@ -40,8 +40,8 @@ class _FinalizarAlertaWidgetState extends State<FinalizarAlertaWidget> {
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    print("Tipo: "+widget.tipoSub);
-    print("Id: "+widget.idTab);
+    print("Tipo: "+widget.tipoSub!);
+    print("Id: "+widget.idTab!);
 
     isLoading = false;
     setState(() {});

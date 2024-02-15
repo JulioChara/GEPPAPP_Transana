@@ -139,6 +139,7 @@ class InformePreventivoService {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -164,6 +165,7 @@ class InformePreventivoService {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -188,6 +190,7 @@ class InformePreventivoService {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -211,6 +214,7 @@ class InformePreventivoService {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -257,6 +261,7 @@ class InformePreventivoService {
       }
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

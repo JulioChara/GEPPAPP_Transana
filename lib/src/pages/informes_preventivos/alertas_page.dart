@@ -39,8 +39,8 @@ class _AlertasPageState extends State<AlertasPage> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
-    String idV = await prefs.getString("IdVehiculo");
+    String? id = await prefs.getString("idUser")!;
+    String? idV = await prefs.getString("IdVehiculo")!;
 
     print(idV);
     // String sInicial = await prefs.getString("sInicial");
@@ -122,8 +122,8 @@ class _AlertasPageState extends State<AlertasPage> {
                     itemBuilder: (context, i) {
                       return ListTile(
                         onTap: () {
-                          showDetalles(alertasListadoList[i].documentoGeneral,
-                              alertasListadoList[i].idTab);
+                          showDetalles(alertasListadoList[i].documentoGeneral!,
+                              alertasListadoList[i].idTab!);
                           //  alertasListadoList[i].plaId);
                         },
                         title: Row(
@@ -149,7 +149,7 @@ class _AlertasPageState extends State<AlertasPage> {
                           ],
                         ),
                         subtitle:
-                            Text(alertasListadoList[i].tipoDocumentoFkDesc),
+                            Text(alertasListadoList[i].tipoDocumentoFkDesc!),
                         leading: Icon(
                           Icons.content_paste,
                           color: Colors.redAccent,
@@ -170,7 +170,7 @@ class _AlertasPageState extends State<AlertasPage> {
                                     ),
                                     itemBuilder: (BuildContext context) {
                                       //    String anular = "Anular";
-                                      List<String> choices = new List();
+                                      List<String> choices = [];
                                       // choices.add(anular);
                                       // choices.add("Ver Detalle");
                                       return [
@@ -178,16 +178,16 @@ class _AlertasPageState extends State<AlertasPage> {
                                           value: (alertasListadoList[i]
                                                           .documentoGeneral ==
                                                       "Documento"
-                                                  ? alertasListadoList[i].idTab
+                                                  ? alertasListadoList[i].idTab!
                                                   : alertasListadoList[i]
-                                                      .vehiId) +
+                                                      .vehiId!) +
                                               "," +
                                               alertasListadoList[i]
-                                                  .documentoGeneral +
+                                                  .documentoGeneral! +
                                               "," +
-                                              alertasListadoList[i].kmActual +
+                                              alertasListadoList[i].kmActual! +
                                               "," +
-                                              alertasListadoList[i].idTab,
+                                              alertasListadoList[i].idTab!,
                                           //alertasListadoList[i].documentoGeneral == "Documento" ? "Renovar" : "Actualizar KM",
                                           // child: alertasListadoList[i].documentoGeneral == "Documento" ? Text("Renovar") : Text("Actualizar KM") ,
                                           child: alertasListadoList[i]
@@ -201,11 +201,11 @@ class _AlertasPageState extends State<AlertasPage> {
                                                   : Text("Renovar"),
                                         ),
                                         PopupMenuItem<String>(
-                                          value: (alertasListadoList[i].idTab) +
+                                          value: (alertasListadoList[i].idTab!) +
                                               "," +
                                               "Finalizar" +
                                               "," +
-                                              alertasListadoList[i].kmActual +
+                                              alertasListadoList[i].kmActual! +
                                               "," +
                                               ( alertasListadoList[i].documentoGeneral =="Documento" ? "1" : "2"),
                                              // alertasListadoList[i].idTab,
@@ -279,7 +279,7 @@ class _AlertasPageState extends State<AlertasPage> {
     );
   }
 
-  void choiceActionDoc(int choice, BuildContext context) {
+  void choiceActionDoc(dynamic choice, BuildContext context) {
     print(choice);
 
     showDialog(

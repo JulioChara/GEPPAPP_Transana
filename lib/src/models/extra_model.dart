@@ -1,10 +1,10 @@
 
 
 class TipoProducto {
-  String categoria;
-  String descripcion;
-  String id;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? titulo;
 
   TipoProducto({
     this.categoria,
@@ -31,10 +31,10 @@ class TipoProducto {
 
 
 class TipoSituacion {
-  String categoria;
-  String descripcion;
-  String id;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? titulo;
 
   TipoSituacion({
     this.categoria,
@@ -60,10 +60,10 @@ class TipoSituacion {
 
 
 class TipoTipo {
-  String categoria;
-  String descripcion;
-  String id;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? titulo;
 
   TipoTipo({
     this.categoria,
@@ -89,10 +89,10 @@ class TipoTipo {
 
 
 class TipoPrioridad {
-  String categoria;
-  String descripcion;
-  String id;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? titulo;
 
   TipoPrioridad({
     this.categoria,
@@ -117,10 +117,10 @@ class TipoPrioridad {
 }
 
 class TipoInsidencia {
-  String categoria;
-  String descripcion;
-  String id;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? titulo;
 
   TipoInsidencia({
     this.categoria,

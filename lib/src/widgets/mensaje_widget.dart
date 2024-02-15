@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class MensajeWidget extends StatefulWidget {
 
-  String mensaje = "";
-  int pop = 0;
+  String? mensaje = "";
+  int? pop = 0;
   MensajeWidget({this.mensaje, this.pop});
 
   @override
@@ -18,7 +18,7 @@ class _MensajeWidgetState extends State<MensajeWidget> {
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-                Text(widget.mensaje),
+                Text(widget.mensaje!),
           ],
         ),
       ),
@@ -27,7 +27,7 @@ class _MensajeWidgetState extends State<MensajeWidget> {
           child: const Text('Aceptar'),
           onPressed: () {
               Navigator.of(context).pop();
-              for (int i = 0; i < widget.pop; i++) {
+              for (int i = 0; i < widget.pop!; i++) {
                 Navigator.of(context).pop();
               }
           },

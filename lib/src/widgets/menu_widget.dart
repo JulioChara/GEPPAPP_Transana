@@ -28,16 +28,16 @@ class _MenuWidgetState extends State<MenuWidget> {
 
   _valorInicial() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    nameUser = await prefs.getString("nameUser");
+    nameUser = await prefs.getString("nameUser")!;
     print(nameUser);
   }
 
 
   Future<String> getIdRol() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    widget.rolcito = prefs.getString('rolId');
+    widget.rolcito = prefs.getString('rolId')!;
     print(prefs.getString('rolId'));
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
 
 

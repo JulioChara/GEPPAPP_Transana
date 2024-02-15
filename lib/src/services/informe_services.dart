@@ -13,7 +13,7 @@ class InformeService {
     try {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String  idUser =  prefs.getString('idUser') ;
+      String  idUser =  prefs.getString('idUser')! ;
 
       // var resp = await http.post(kUrl+"/ListadoInformes",
       String url = kUrl + "/ListadoInformes";
@@ -35,16 +35,14 @@ class InformeService {
       return informes;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
   Future<String> estadoAnularInforme(String id,String idUser) async {
 
     try{
-
       print(jsonEncode({'Id': id,'usr': idUser,}));
-
-      // var resp = await http.post(kUrl+"/AnularInforme",
       String url = kUrl + "/AnularInforme";
       http.Response response = await http.post(Uri.parse(url),
           headers: {
@@ -60,6 +58,7 @@ class InformeService {
 
     }catch(e){
       print(e);
+      return "0";
     }
 
   }
@@ -67,15 +66,9 @@ class InformeService {
 
 
   Future<String> registrarInforme(InformeModel informe) async{
-
     try {
-
       InformeModel f = new  InformeModel();
-
-
       print(informe.toJson());
-
-      // var resp = await http.post(kUrl+"/GenerarInforme",
       String url = kUrl + "/GenerarInforme";
       http.Response response = await http.post(Uri.parse(url),
           headers: {
@@ -94,6 +87,7 @@ class InformeService {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

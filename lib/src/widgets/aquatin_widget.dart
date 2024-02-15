@@ -17,13 +17,13 @@ class AquaEjemplo extends StatefulWidget {
 }
 
 class _AquaEjemploState extends State<AquaEjemplo> {
-  static List<EmpleadoModel> empleado = new List<EmpleadoModel>();
+  static List<EmpleadoModel> empleado = [];
   bool loading = true;
   GlobalKey<AutoCompleteTextFieldState<EmpleadoModel>> keyEmpleado = new GlobalKey();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AutoCompleteTextField searchEmpleado;
+  AutoCompleteTextField? searchEmpleado;
 
   var objDetailServices = new EmpleadoService();
 
@@ -167,14 +167,14 @@ class _AquaEjemploState extends State<AquaEjemplo> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
+        return item.entiRazonSocial!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEmpleado.textField.controller.text = item.entiRazonSocial;
+          searchEmpleado!.textField!.controller!.text = item.entiRazonSocial!;
          // guiaModel.remitente = item.id;
         });
       },
@@ -196,7 +196,7 @@ class _AquaEjemploState extends State<AquaEjemplo> {
         children: <Widget>[
           Flexible(
             child: Text(
-              empleado.entiRazonSocial,
+              empleado.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -209,7 +209,7 @@ class _AquaEjemploState extends State<AquaEjemplo> {
           ),
           Flexible(
             child: Text(
-              empleado.entiNroDocumento,
+              empleado.entiNroDocumento!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,

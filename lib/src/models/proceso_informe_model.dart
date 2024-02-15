@@ -13,16 +13,16 @@ class ProcesoInformeModel {
     this.idUsuarioAnulado,
   });
 
-  String idCabezera;
-  String idDetalle;
-  int idAccion;
-  String comentarioProcesado;
-  String idResponsableProcesado;
-  String IdTipoSolucionado;
-  String comentarioSolucionado;
-  String idResponsableSolucionado;
-  String comentarioAnulado;
-  String idUsuarioAnulado;
+  String? idCabezera;
+  String? idDetalle;
+  int? idAccion;
+  String? comentarioProcesado;
+  String? idResponsableProcesado;
+  String? IdTipoSolucionado;
+  String? comentarioSolucionado;
+  String? idResponsableSolucionado;
+  String? comentarioAnulado;
+  String? idUsuarioAnulado;
 
   factory ProcesoInformeModel.fromJson(Map<String, dynamic> json) => ProcesoInformeModel(
     idCabezera: json["IdCabezera"],

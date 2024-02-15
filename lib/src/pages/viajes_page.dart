@@ -200,7 +200,7 @@ class _ViajePageState extends State<ViajePage> {
             {
               if (snapshot.hasData) {
                 final viajeModel = snapshot.data;
-                return viajeModel.length > 0
+                return viajeModel!.length > 0
                     ? ListView.builder(
                   itemCount: viajeModel.length,
                   itemBuilder: (context, i) {
@@ -232,7 +232,7 @@ class _ViajePageState extends State<ViajePage> {
                              String vincular = "Vincular";
                              String anular = "Anular";
 
-                              List<String> choices = new List();
+                              List<String> choices = [];
 
                               if (viajeModel[i].estado == "10513") {
                                 choices.add(finalizar);
@@ -246,11 +246,11 @@ class _ViajePageState extends State<ViajePage> {
 
                              return choices.map((String choice) {
                                return PopupMenuItem<String>(
-                                 value: viajeModel[i].ViajId +
+                                 value: viajeModel[i].ViajId! +
                                      "," +
                                      choice +
                                      "," +
-                                     viajeModel[i].saldoInicial, //aquaaaa
+                                     viajeModel[i].saldoInicial!, //aquaaaa
                                  child: Text(choice),
                                );
                              }).toList();
@@ -346,7 +346,7 @@ class _ViajePageState extends State<ViajePage> {
         context,
         MaterialPageRoute(
           builder: (context) => PlanillaGastosPage(
-            saldoInicial: model.saldoInicial,
+            saldoInicial: model.saldoInicial!,
           ),
         ),
       );
@@ -369,7 +369,7 @@ class _ViajePageState extends State<ViajePage> {
     ViajeService service = new ViajeService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String  idUser =  prefs.getString('idUser') ;
+    String  idUser =  prefs.getString('idUser')!;
 
     String res = await service.estadoAnularViaje(id,idUser);
 
@@ -427,7 +427,7 @@ class _ViajePageState extends State<ViajePage> {
 
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -442,7 +442,7 @@ class _ViajePageState extends State<ViajePage> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -460,7 +460,7 @@ class _ViajePageState extends State<ViajePage> {
 
 
 
-  void choiceActionViaj(int choice, BuildContext context) {
+  void choiceActionViaj(dynamic choice, BuildContext context) {
     if (choice == 1) {
       Navigator.pushNamed(context, 'viajesCreate');
     } else if (choice == 2) {

@@ -23,22 +23,22 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
   bool loading = true;
   bool loadingSend = false;
 
-  static List<Placa> placas = new List<Placa>();
+  static List<Placa> placas = [];
   GlobalKey<AutoCompleteTextFieldState<Placa>> keyPlaca = new GlobalKey();
 
-  static List<TipoPrioridad> tipoPrioridad = new List<TipoPrioridad>();
+  static List<TipoPrioridad> tipoPrioridad = [];
   GlobalKey<AutoCompleteTextFieldState<TipoPrioridad>> keyTipo = new GlobalKey();
 
-  static List<TipoInsidencia> tipoInsidencias = new List<TipoInsidencia>();
+  static List<TipoInsidencia> tipoInsidencias = [];
   GlobalKey<AutoCompleteTextFieldState<TipoInsidencia>> keyTipoInsidencias = new GlobalKey();
 
 
-  List<ProductoInformes> productoLista = new List<ProductoInformes>();
+  List<ProductoInformes> productoLista = [];
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AutoCompleteTextField searchPlaca;
-  AutoCompleteTextField searchTipo;
-  AutoCompleteTextField searchTipoInsidencia;
+  AutoCompleteTextField? searchPlaca;
+  AutoCompleteTextField? searchTipo;
+  AutoCompleteTextField? searchTipoInsidencia;
   TextEditingController ConceptoEditingController = new TextEditingController();
 
   var objDetailServices = new DetailServices();
@@ -47,12 +47,12 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
 
   InformeModel informeModel = new InformeModel();
 
-  Placa _selectedPlaca;
-  TipoPrioridad _selectedPrioridad;
-  TipoInsidencia _selectedInsidencia;
-  List<DropdownMenuItem<Placa>> _placaDropdownMenuItems;
-  List<DropdownMenuItem<TipoPrioridad>> _tipoDropdownMenuItems;
-  List<DropdownMenuItem<TipoInsidencia>> _tipoInsidenciaDropdownMenuItems;
+  Placa? _selectedPlaca;
+  TipoPrioridad? _selectedPrioridad;
+  TipoInsidencia? _selectedInsidencia;
+  List<DropdownMenuItem<Placa>>? _placaDropdownMenuItems;
+  List<DropdownMenuItem<TipoPrioridad>>? _tipoDropdownMenuItems;
+  List<DropdownMenuItem<TipoInsidencia>>? _tipoInsidenciaDropdownMenuItems;
 
   void getData() async {
     try {
@@ -87,47 +87,47 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
     getData();
   }
   List<DropdownMenuItem<Placa>> buildDropDownMenuItems(List placas) {
-    List<DropdownMenuItem<Placa>> items = List();
+    List<DropdownMenuItem<Placa>> items = [];
     for (Placa placa in placas) {
-      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion),));
+      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion!),));
     }
     return items;
   }
 
   List<DropdownMenuItem<TipoPrioridad>> buildDropDownMenuTipos(List tipos) {
-    List<DropdownMenuItem<TipoPrioridad>> items = List();
+    List<DropdownMenuItem<TipoPrioridad>> items = [];
     for (TipoPrioridad tipo in tipos) {
-      items.add(DropdownMenuItem( value: tipo, child: Text(tipo.descripcion),));
+      items.add(DropdownMenuItem( value: tipo, child: Text(tipo.descripcion!),));
     }
     return items;
   }
 
   List<DropdownMenuItem<TipoInsidencia>> buildDropDownMenuTiposInsidencias(List tipos) {
-    List<DropdownMenuItem<TipoInsidencia>> items = List();
+    List<DropdownMenuItem<TipoInsidencia>> items = [];
     for (TipoInsidencia tipo in tipos) {
-      items.add(DropdownMenuItem( value: tipo, child: Text(tipo.descripcion),));
+      items.add(DropdownMenuItem( value: tipo, child: Text(tipo.descripcion!),));
     }
     return items;
   }
 
-  onChangeDropdownItem(Placa selectedPlaca) {
-    informeModel.vehiculo = selectedPlaca.descripcion;
+  onChangeDropdownItem(Placa? selectedPlaca) {
+    informeModel.vehiculo = selectedPlaca!.descripcion!;
     setState(() {
       _selectedPlaca = selectedPlaca;
-      print(_selectedPlaca.descripcion);
+      print(_selectedPlaca!.descripcion);
 
     });
   }
 
-  onChangeDropdownTipos(TipoPrioridad selectedPrioridad) {
-    informeModel.tipoprioridad = selectedPrioridad.id;
-    print(selectedPrioridad.id);
+  onChangeDropdownTipos(TipoPrioridad? selectedPrioridad) {
+    informeModel.tipoprioridad = selectedPrioridad!.id;
+    print(selectedPrioridad!.id);
     setState(() {
       _selectedPrioridad = selectedPrioridad;
     });
   }
 
-  onChangeDropdownTiposInsidencia(TipoInsidencia selectedInsidencias) {
+  onChangeDropdownTiposInsidencia(TipoInsidencia? selectedInsidencias) {
     setState(() {
       _selectedInsidencia = selectedInsidencias;
     });
@@ -310,9 +310,9 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
                             ? () {
                           print("mayor que cero");
                           var prod = new ProductoInformes(
-                              productoId: _selectedInsidencia.id,
+                              productoId: _selectedInsidencia!.id,
                               producto: ConceptoEditingController.text,
-                              Tipo: _selectedInsidencia.descripcion,
+                              Tipo: _selectedInsidencia!.descripcion,
                               );
                           addItemProducto(prod);
                           ConceptoEditingController.clear();
@@ -341,7 +341,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
                                     ),
                                     title: Text(
                                       productoLista[index]
-                                          .producto
+                                          .producto!
                                           .toUpperCase(),
                                       style: TextStyle(
                                           fontSize: 17.0,
@@ -475,7 +475,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
     InformeService service = new InformeService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
+    String id = await prefs.getString("idUser")!;
     print(id);
     informeModel.usercreacion = id;
     informeModel.tipoestado="10525";
@@ -571,14 +571,14 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchPlaca.textField.controller.text = item.descripcion;
+          searchPlaca!.textField!.controller!.text = item.descripcion!;
           informeModel.vehiculo = item.descripcion;
         });
       },
@@ -612,14 +612,14 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchTipo.textField.controller.text = item.descripcion;
+          searchTipo!.textField!.controller!.text = item.descripcion!;
           informeModel.tipoprioridad = item.id;
           print(item.id);
         });
@@ -641,7 +641,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              placa.descripcion,
+              placa.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -654,7 +654,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
           ),
           Flexible(
             child: Text(
-              placa.categoria,
+              placa.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -675,7 +675,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              tipoPrioridad.descripcion,
+              tipoPrioridad.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -688,7 +688,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
           ),
           Flexible(
             child: Text(
-              tipoPrioridad.categoria,
+              tipoPrioridad.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,

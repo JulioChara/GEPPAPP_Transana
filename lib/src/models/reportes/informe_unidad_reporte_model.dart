@@ -14,21 +14,21 @@ class InformeUnidadReporteModel {
     this.resultado,
   });
 
-  String conductor;
-  List<Detalle> detalle;
-  String fechaCreacion;
-  String idCabezera;
-  String idPrioridad;
-  String idPrioridadDesc;
-  String idEstadoAtencion;
-  String idEstadoAtencionDesc;
-  String placa;
-  String mensaje;
-  String resultado;
+  String? conductor;
+  List<Detalle>? detalle;
+  String? fechaCreacion;
+  String? idCabezera;
+  String? idPrioridad;
+  String? idPrioridadDesc;
+  String? idEstadoAtencion;
+  String? idEstadoAtencionDesc;
+  String? placa;
+  String? mensaje;
+  String? resultado;
 
   factory InformeUnidadReporteModel.fromJson(Map<String, dynamic> json) => InformeUnidadReporteModel(
     conductor: json["Conductor"],
-    detalle: List<Detalle>.from(json["Detalle"].map((x) => Detalle.fromJson(x))),
+    detalle: List<Detalle>.from(json["Detalle"]?.map((x) => Detalle.fromJson(x))),
     fechaCreacion: json["FechaCreacion"],
     idCabezera: json["IdCabezera"],
     idPrioridad: json["IdPrioridad"],
@@ -42,7 +42,7 @@ class InformeUnidadReporteModel {
 
   Map<String, dynamic> toJson() => {
     "Conductor": conductor,
-    "Detalle": List<dynamic>.from(detalle.map((x) => x.toJson())),
+    "Detalle": List<dynamic>.from(detalle!.map((x) => x.toJson())),
     "FechaCreacion": fechaCreacion,
     "IdCabezera": idCabezera,
     "IdPrioridad": idPrioridad,
@@ -82,29 +82,29 @@ class Detalle {
     this.idUsuarioCreacionDesc,
   });
 
-  String comentarioAnulado;
-  String comentarioProcesado;
-  String comentarioSolucionado;
-  String descripcion;
-  String fechaAnulado;
-  String fechaCreacion;
-  String fechaModificacion;
-  String fechaProcesar;
-  String fechaSolucionado;
-  String idDetalle;
-  String idResponsableProcesado;
-  String idResponsableProcesadoDesc;
-  String idResponsableSolucionado;
-  String idResponsableSolucionadoDesc;
-  String idTipoEstadoAtencion;
-  String idTipoEstadoAtencionDesc;
-  String idTipoIncidencia;
-  String idTipoIncidenciaDesc;
-  dynamic idTipoSolucionado;
-  String idUsuarioAnulado;
-  String idUsuarioAnuladoDesc;
-  String idUsuarioCreacion;
-  String idUsuarioCreacionDesc;
+  String? comentarioAnulado;
+  String? comentarioProcesado;
+  String? comentarioSolucionado;
+  String? descripcion;
+  String? fechaAnulado;
+  String? fechaCreacion;
+  String? fechaModificacion;
+  String? fechaProcesar;
+  String? fechaSolucionado;
+  String? idDetalle;
+  String? idResponsableProcesado;
+  String? idResponsableProcesadoDesc;
+  String? idResponsableSolucionado;
+  String? idResponsableSolucionadoDesc;
+  String? idTipoEstadoAtencion;
+  String? idTipoEstadoAtencionDesc;
+  String? idTipoIncidencia;
+  String? idTipoIncidenciaDesc;
+  String? idTipoSolucionado;
+  String? idUsuarioAnulado;
+  String? idUsuarioAnuladoDesc;
+  String? idUsuarioCreacion;
+  String? idUsuarioCreacionDesc;
 
   factory Detalle.fromJson(Map<String, dynamic> json) => Detalle(
     comentarioAnulado: json["ComentarioAnulado"],

@@ -6,7 +6,7 @@ import 'package:transana_app/src/models/informes_preventivos/alertas_model.dart'
 import 'package:transana_app/src/services/informes_preventivos_services.dart';
 
 class AlertasMantenimientosWidget extends StatefulWidget {
-  String idVehi = "";
+  String? idVehi = "";
   AlertasMantenimientosWidget({this.idVehi});
 
   @override
@@ -16,7 +16,7 @@ class AlertasMantenimientosWidget extends StatefulWidget {
 
 class _AlertasMantenimientosWidgetState
     extends State<AlertasMantenimientosWidget> {
-  static List<TiposModel> tipos = new List<TiposModel>();
+  static List<TiposModel> tipos =[];
 
   final formKey = GlobalKey<FormState>();
   var loading = true;
@@ -53,7 +53,7 @@ class _AlertasMantenimientosWidgetState
   void getData() async {
     try {
       tipos = await objTipos.getAlertasTiposMantenimientos();
-      defTipo = tipos[0].tipoId;
+      defTipo = tipos[0].tipoId!;
       defSubTipo = "POR KILOMETRAJE";
       setState(() {
         loading = false;
@@ -64,7 +64,7 @@ class _AlertasMantenimientosWidgetState
   }
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _saveMantenimientoModel.idAccion = 1;
       _saveMantenimientoModel.vehiculoFk = widget.idVehi;
       _saveMantenimientoModel.tipoDocFk = defTipo.toString();
@@ -124,7 +124,7 @@ class _AlertasMantenimientosWidgetState
                             .map(
                               (e) => DropdownMenuItem(
                                 child: Text(
-                                  e.tipoDescripcion,
+                                  e.tipoDescripcion!,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -133,8 +133,8 @@ class _AlertasMantenimientosWidgetState
                               ),
                             )
                             .toList(),
-                        onChanged: (value) {
-                          defTipo = value;
+                        onChanged: (String? value) {
+                          defTipo = value!;
                           // List<PlanillaComprobantesModel> lista = destinos.where((element) => element.id == value).toList();
                           // _rucController.text = lista.first.ruc;
                           // _montoController.text = lista.first.monto;
@@ -157,8 +157,8 @@ class _AlertasMantenimientosWidgetState
                             child: Text(value),
                           );
                         }).toList(),
-                        onChanged: (value) {
-                          defSubTipo = value;
+                        onChanged: (String? value) {
+                          defSubTipo = value!;
                           // List<PlanillaComprobantesModel> lista = destinos.where((element) => element.id == value).toList();
                           // _rucController.text = lista.first.ruc;
                           // _montoController.text = lista.first.monto;
@@ -427,7 +427,7 @@ class _AlertasMantenimientosWidgetState
   }
 
   Future<Null> _selectSelDateini(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         //initialDate: new DateTime.now(),
@@ -444,7 +444,7 @@ class _AlertasMantenimientosWidgetState
   }
 
   Future<Null> _selectSelDatefin(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(selDatefin),

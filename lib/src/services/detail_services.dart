@@ -31,6 +31,7 @@ class DetailServices {
       return conductores;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -57,6 +58,7 @@ class DetailServices {
       return clientes;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -81,6 +83,7 @@ class DetailServices {
       return remitente;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -95,7 +98,7 @@ class DetailServices {
           });
       var decodeData = json.decode(resp.body);
 
-      final List<Destinatario> destinatario = new List();
+      final List<Destinatario> destinatario = [];
 
       decodeData["Clientes"].forEach((item) {
         final destinatarioTemp = Destinatario.fromJson(item);
@@ -105,6 +108,7 @@ class DetailServices {
       return destinatario;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -131,6 +135,7 @@ class DetailServices {
       return placaPreferenciales;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -158,6 +163,7 @@ class DetailServices {
       return placas;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -185,6 +191,7 @@ class DetailServices {
 
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -210,6 +217,7 @@ class DetailServices {
       return vinculacion;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -235,6 +243,7 @@ class DetailServices {
       return tipos;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -260,6 +269,7 @@ class DetailServices {
       return tipos;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 

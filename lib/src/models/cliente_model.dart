@@ -5,11 +5,11 @@ List<Cliente> clienteFromJson(String str) => List<Cliente>.from(json.decode(str)
 String clienteToJson(List<Cliente> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Cliente {
-  String direccion;
-  String documento;
-  String id;
-  String razonSocial;
-  String titulo;
+  String? direccion;
+  String? documento;
+  String? id;
+  String? razonSocial;
+  String? titulo;
 
   Cliente({
     this.direccion,
@@ -37,11 +37,11 @@ class Cliente {
 }
 
 class Remitente {
-  String direccion;
-  String documento;
-  String id;
-  String razonSocial;
-  String titulo;
+  String? direccion;
+  String? documento;
+  String? id;
+  String? razonSocial;
+  String? titulo;
 
   Remitente({
     this.direccion,
@@ -69,11 +69,11 @@ class Remitente {
 }
 
 class Destinatario {
-  String direccion;
-  String documento;
-  String id;
-  String razonSocial;
-  String titulo;
+  String? direccion;
+  String? documento;
+  String? id;
+  String? razonSocial;
+  String? titulo;
 
   Destinatario({
     this.direccion,

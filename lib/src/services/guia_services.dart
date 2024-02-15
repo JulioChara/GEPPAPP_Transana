@@ -13,7 +13,7 @@ class GuiaService {
     try {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String  idUser =  prefs.getString('idUser') ;
+      String  idUser =  prefs.getString('idUser')! ;
 
       // var resp = await http.post(kUrl+"/ListadoGuias",
       String url = kUrl + "/ListadoGuias";
@@ -35,6 +35,7 @@ class GuiaService {
       return guias;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -60,6 +61,7 @@ class GuiaService {
 
     }catch(e){
       print(e);
+      return "0";
     }
 
   }
@@ -84,6 +86,7 @@ class GuiaService {
 
     }catch(e){
       print(e);
+      return "0";
     }
 
   }
@@ -117,6 +120,7 @@ class GuiaService {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

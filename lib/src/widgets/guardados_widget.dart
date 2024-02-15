@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GuardadosWidget extends StatefulWidget {
-  String result = "";
+  String? result = "";
   GuardadosWidget({this.result});
 
   @override

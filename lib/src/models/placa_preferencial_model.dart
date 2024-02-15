@@ -6,10 +6,10 @@ List<PlacaPreferencial> placaFromJson(String str) => List<PlacaPreferencial>.fro
 String placaToJson(List<PlacaPreferencial> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class PlacaPreferencial {
-  String categoria;
-  String descripcion;
-  String id;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? titulo;
 
   PlacaPreferencial({
     this.categoria,

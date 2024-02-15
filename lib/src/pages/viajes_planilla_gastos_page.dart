@@ -16,7 +16,7 @@ import 'package:transana_app/src/widgets/Planillas/planilla_show_widget.dart';
 import 'package:transana_app/src/widgets/planilla_documentos_widget.dart';
 
 class PlanillaGastosPage extends StatefulWidget {
-  String saldoInicial;
+  String? saldoInicial;
 
   PlanillaGastosPage({
     this.saldoInicial,
@@ -48,18 +48,18 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
-    String idVijae = await prefs.getString("IdVijae");
-    String sInicial = await prefs.getString("sInicial");
+    String id = await prefs.getString("idUser")!;
+    String idVijae = await prefs.getString("IdVijae")!;
+    String sInicial = await prefs.getString("sInicial")!;
     idViaje = idVijae;
     sInicial = sInicial;
     plantillaGastosList = await planilla.getPlanillaGastosDetalles(idViaje);
     //saldoFinal = 0;
     totalGastos = 0;
-    saldoFinal = double.parse(widget.saldoInicial);
+    saldoFinal = double.parse(widget.saldoInicial!);
     plantillaGastosList.forEach((element) {
-      saldoFinal = saldoFinal - double.parse(element.monto);
-      totalGastos = totalGastos + double.parse(element.monto);
+      saldoFinal = saldoFinal - double.parse(element.monto!);
+      totalGastos = totalGastos + double.parse(element.monto!);
     });
 
     isLoading = false;
@@ -156,8 +156,8 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                       return ListTile(
                         onTap: () {
                           showDetalles(
-                              plantillaGastosList[i].idTipoDocumento,
-                              plantillaGastosList[i].plaId);
+                              plantillaGastosList[i].idTipoDocumento!,
+                              plantillaGastosList[i].plaId!);
                         },
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +171,7 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                                   color: Colors.black54),
                             ),
                             Text(
-                              "${double.parse(plantillaGastosList[i].monto).toStringAsFixed(2)}",
+                              "${double.parse(plantillaGastosList[i].monto!).toStringAsFixed(2)}",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(
@@ -180,7 +180,7 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                             ),
                           ],
                         ),
-                        subtitle: Text(plantillaGastosList[i].concepto),
+                        subtitle: Text(plantillaGastosList[i].concepto!),
                         leading: Icon(
                           Icons.content_paste,
                           color: Colors.redAccent,
@@ -198,12 +198,12 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                               icon: Icon(Icons.delete),
                               onPressed: () {
                                 print("ICONO ELIMINAR: " +
-                                    plantillaGastosList[i].plaId);
+                                    plantillaGastosList[i].plaId!);
                                 print("TIPO DOC A AELIMINAR" +
-                                    plantillaGastosList[i].idTipoDocumento);
+                                    plantillaGastosList[i].idTipoDocumento!);
                                 return showEliminar(
-                                    plantillaGastosList[i].idTipoDocumento,
-                                    plantillaGastosList[i].plaId);
+                                    plantillaGastosList[i].idTipoDocumento!,
+                                    plantillaGastosList[i].plaId!);
                               },
                             ),
                           ],
@@ -229,7 +229,7 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                   ),
                   //child: Text("Saldo inicial: S./ ${widget.saldoInicial}",
                   child: Text(
-                    "Saldo inicial: S./ ${double.parse(widget.saldoInicial).toStringAsFixed(2)}",
+                    "Saldo inicial: S./ ${double.parse(widget.saldoInicial!).toStringAsFixed(2)}",
                     style: TextStyle(height: 1, fontSize: 20),
                   ),
                 ),
@@ -314,7 +314,7 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
           case ConnectionState.done:
             {
               if (snapshot.hasData) {
-                List<PlanillaGastosModel> planillaModel = snapshot.data;
+                List<PlanillaGastosModel> planillaModel = snapshot.data!;
                 return planillaModel.length > 0
                     ? ListView.builder(
                         itemCount: planillaModel.length,
@@ -331,7 +331,7 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black54),
                             ),
-                            subtitle: Text(planillaModel[i].concepto),
+                            subtitle: Text(planillaModel[i].concepto!),
                             //   "${informeModel[i].correlativo}   |   ${informeModel[i].tipoprioridad}  |  ${informeModel[i].tipoestado}   |  ${informeModel[i].fechacreacion} "),
                             leading: Icon(
                               Icons.content_paste,
@@ -350,12 +350,12 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
                                     icon: Icon(Icons.delete),
                                     onPressed: () {
                                       print("ICONO ELIMINAR: " +
-                                          planillaModel[i].plaId);
+                                          planillaModel[i].plaId!);
                                       print("TIPO DOC A AELIMINAR" +
-                                          planillaModel[i].idTipoDocumento);
+                                          planillaModel[i].idTipoDocumento!);
                                       return showEliminar(
-                                          planillaModel[i].idTipoDocumento,
-                                          planillaModel[i].plaId);
+                                          planillaModel[i].idTipoDocumento!,
+                                          planillaModel[i].plaId!);
                                     }),
                               ],
                             ),
@@ -380,7 +380,7 @@ class _PlanillaGastosPageState extends State<PlanillaGastosPage> {
     );
   }
 
-  void choiceAction(int choice, BuildContext context) {
+  void choiceAction(dynamic choice, BuildContext context) {
     print(choice);
 
     showDialog(

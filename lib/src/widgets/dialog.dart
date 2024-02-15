@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 class Dialogs {
   static Future<void> alert(
       BuildContext context, {
-        String title,
-        String body,
-        String confirmText = "Aceptar",
+        String? title,
+        String? body,
+        String? confirmText = "Aceptar",
       }) async {
     Completer<void> c = Completer();
 
@@ -24,7 +24,7 @@ class Dialogs {
                   Navigator.pop(context);
                   c.complete();
                 },
-                child: Text(confirmText),
+                child: Text(confirmText!),
               )
             ],
           );
@@ -36,12 +36,12 @@ class Dialogs {
 
   static Future<bool> showMaterialDialog(
       BuildContext context, {
-        String title,
-        String body,
-        String enviar = "Enviar SUNAT",
-        String anular = "Anular",
-        String cancelText = "Cancelar",
-        String confirmText = "Aceptar",
+        String? title,
+        String? body,
+        String? enviar = "Enviar SUNAT",
+        String? anular = "Anular",
+        String? cancelText = "Cancelar",
+        String? confirmText = "Aceptar",
       }) {
     Completer<bool> c = Completer();
 
@@ -72,7 +72,7 @@ class Dialogs {
                     //c.complete(true);
                   },
                   child: Text(
-                    enviar,
+                    enviar!,
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w300,
@@ -84,7 +84,7 @@ class Dialogs {
                     //c.complete(true);
                   },
                   child: Text(
-                    anular,
+                    anular!,
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w300,
@@ -98,7 +98,7 @@ class Dialogs {
                   c.complete(false);
                 },
                 child: Text(
-                  cancelText,
+                  cancelText!,
                   style: TextStyle(
                       color: Colors.redAccent,
                       fontWeight: FontWeight.bold,
@@ -113,9 +113,9 @@ class Dialogs {
   }
 
   static void inputEmail(BuildContext context,
-      {String label,
-        String placeholder,
-        @required void Function(String) onOka}) {
+      {String? label,
+        String? placeholder,
+        @required void Function(String)? onOka}) {
     String text = "";
 
     showCupertinoDialog(
@@ -127,7 +127,7 @@ class Dialogs {
               child: Text(label),
             ) : null,
             content: InputEmail(
-              placeholder: placeholder,
+              placeholder: placeholder!,
             ),
           );
         });
@@ -135,7 +135,7 @@ class Dialogs {
 }
 
 class InputEmail extends StatefulWidget {
-  final String placeholder;
+  final String? placeholder;
 
   InputEmail({this.placeholder});
 

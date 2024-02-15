@@ -43,6 +43,7 @@ class LoginServices {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 }

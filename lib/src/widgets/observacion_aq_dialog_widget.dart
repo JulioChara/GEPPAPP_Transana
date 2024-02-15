@@ -10,10 +10,10 @@ import 'package:transana_app/src/services/informe_proceso_services.dart';
 import 'package:transana_app/src/models/incidencias_model.dart';
 
 class ObservacionAqDialogWidget extends StatefulWidget {
-  String idCabezera;
-  String idDetalle;
-  String incidenciaGen;
-  int idAccion;
+  String? idCabezera;
+  String? idDetalle;
+  String? incidenciaGen;
+  int? idAccion;
 
   ObservacionAqDialogWidget({
     this.idCabezera,
@@ -29,8 +29,8 @@ class ObservacionAqDialogWidget extends StatefulWidget {
 }
 
 class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
-  static List<EmpleadoModel> empleado = new List<EmpleadoModel>(); // empleado
-  static List<SubIncidenciasModel> subIncidencias = new List<SubIncidenciasModel>(); // Informe incidencias
+  static List<EmpleadoModel> empleado = []; // empleado
+  static List<SubIncidenciasModel> subIncidencias = []; // Informe incidencias
 
 
   bool loading = true;
@@ -38,7 +38,7 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AutoCompleteTextField searchEmpleado;
+  AutoCompleteTextField? searchEmpleado;
 
 
   var objDetailServices = new EmpleadoService();
@@ -77,9 +77,9 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
   void getData() async {
     try {
       empleado = await objDetailServices.getEmpleadosList();
-      subIncidencias = await objInformeDetalleServices.getIncidenciasDetalles(widget.incidenciaGen);
+      subIncidencias = await objInformeDetalleServices.getIncidenciasDetalles(widget.incidenciaGen!);
 
-      idIncidencia = subIncidencias[0].tipoId;  // para que la lista no empieze en nada
+      idIncidencia = subIncidencias[0].tipoId!;  // para que la lista no empieze en nada
 
       print("ahhh");
       print(widget.incidenciaGen);
@@ -94,7 +94,7 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
   }
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _procesoInformeModel.idCabezera = widget.idCabezera;
       _procesoInformeModel.idDetalle = widget.idDetalle;
       _procesoInformeModel.idAccion = widget.idAccion;
@@ -157,7 +157,7 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -165,8 +165,8 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    idIncidencia = value;
+                  onChanged: (String? value) {
+                    idIncidencia = value!;
                     setState(() {});
                   },
                 ) : Container(),
@@ -205,8 +205,8 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
                       ),
                     ),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingresa una observación";
                     }
 
@@ -265,15 +265,15 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
+        return item.entiRazonSocial!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEmpleado.textField.controller.text = item.entiRazonSocial;
-          idEmpleado = item.entiId;
+          searchEmpleado!.textField!.controller!.text = item.entiRazonSocial!;
+          idEmpleado = item.entiId!;
         });
       },
       itemBuilder: (context, item) {
@@ -292,7 +292,7 @@ class _ObservacionAqDialogWidgetState extends State<ObservacionAqDialogWidget> {
         children: <Widget>[
           Expanded(
             child: Text(
-              empleado.entiRazonSocial,
+              empleado.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,

@@ -16,17 +16,17 @@ class PlanillaGastosModel {
     this.resultado,
   });
 
-  String concepto;
-  String fecha;
-  String idDocumentoRelacionado;
-  String idTipoDocumento;
-  String idTipoDocumentoDesc;
-  String item;
-  String monto;
-  String plaId;
-  String viajeFk;
-  String mensaje;
-  String resultado;
+  String? concepto;
+  String? fecha;
+  String? idDocumentoRelacionado;
+  String? idTipoDocumento;
+  String? idTipoDocumentoDesc;
+  String? item;
+  String? monto;
+  String? plaId;
+  String? viajeFk;
+  String? mensaje;
+  String? resultado;
 
   factory PlanillaGastosModel.fromJson(Map<String, dynamic> json) => PlanillaGastosModel(
     concepto: json["Concepto"],
@@ -67,10 +67,10 @@ class PlanillaDocumentosModel {
     this.resultado,
   });
 
-  String tipoDescripcion;
-  String tipoId;
-  String mensaje;
-  String resultado;
+  String? tipoDescripcion;
+  String? tipoId;
+  String? mensaje;
+  String? resultado;
 
   factory PlanillaDocumentosModel.fromJson(Map<String, dynamic> json) => PlanillaDocumentosModel(
     tipoDescripcion: json["TipoDescripcion"],
@@ -96,10 +96,10 @@ class PlanillaComprobantesModel {
     this.resultado,
   });
 
-  String tipoDescripcion;
-  String tipoId;
-  String mensaje;
-  String resultado;
+  String? tipoDescripcion;
+  String? tipoId;
+  String? mensaje;
+  String? resultado;
 
   factory PlanillaComprobantesModel.fromJson(Map<String, dynamic> json) => PlanillaComprobantesModel(
     tipoDescripcion: json["TipoDescripcion"],
@@ -127,10 +127,10 @@ class PlanillaTipos_Compras_Servicios_Model {
     this.resultado,
   });
 
-  String tipoDescripcion;
-  String tipoId;
-  String mensaje;
-  String resultado;
+  String? tipoDescripcion;
+  String? tipoId;
+  String? mensaje;
+  String? resultado;
 
   factory PlanillaTipos_Compras_Servicios_Model.fromJson(Map<String, dynamic> json) => PlanillaTipos_Compras_Servicios_Model(
     tipoDescripcion: json["TipoDescripcion"],
@@ -163,14 +163,14 @@ class DestinosPeajesModel {
     this.resultado,
   });
 
-  String destino;
-  String monto;
-  String tipoComprobante;
-  String razonSocial;
-  String ruc;
-  String id;
-  String mensaje;
-  String resultado;
+  String? destino;
+  String? monto;
+  String? tipoComprobante;
+  String? razonSocial;
+  String? ruc;
+  String? id;
+  String? mensaje;
+  String? resultado;
 
   factory DestinosPeajesModel.fromJson(Map<String, dynamic> json) => DestinosPeajesModel(
     destino: json["Destino"],
@@ -225,23 +225,23 @@ class PlanillaGastosPeajesModel {
     this.idDetalle,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String item;
-  String fecha;
-  String concepto;
-  String monto;
-  String lugar;
-  String tipoComprobante;
-  String fechaDoc;
-  String razonSocial;
-  String ruc;
-  String serie;
-  String numero;
-  String usuario;
-  int idAccion;
-  String idPlanilla;
-  String idDetalle;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? item;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? lugar;
+  String? tipoComprobante;
+  String? fechaDoc;
+  String? razonSocial;
+  String? ruc;
+  String? serie;
+  String? numero;
+  String? usuario;
+  int? idAccion;
+  String? idPlanilla;
+  String? idDetalle;
 
   factory PlanillaGastosPeajesModel.fromJson(Map<String, dynamic> json) => PlanillaGastosPeajesModel(
     viajeFk: json["ViajeFk"],
@@ -296,8 +296,8 @@ class PlanillaGastosEliminarModel {
     this.idTipoDocGasto,
   });
 
-  String idPlanilla;
-  String idTipoDocGasto;
+  String? idPlanilla;
+  String? idTipoDocGasto;
 
   factory PlanillaGastosEliminarModel.fromJson(Map<String, dynamic> json) => PlanillaGastosEliminarModel(
     idPlanilla: json["idPlanilla"],
@@ -340,22 +340,22 @@ class PlanillaGastosAlimentosModel {
     this.idAccion,
   });
 
-  String viajeFk;
-  String viajeDocumentoFk;
-  String tipoDocGasto;
-  String item;
-  //DateTime fecha;
-  String fecha;
-  String concepto;
-  String monto;
-  String fechaDoc;
-  String tipoComprobante;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String numero;
-  String usuario;
-  int idAccion;
+  String? viajeFk;
+  String? viajeDocumentoFk;
+  String? tipoDocGasto;
+  String? item;
+  //Date?Time fecha;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? fechaDoc;
+  String? tipoComprobante;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? numero;
+  String? usuario;
+  int? idAccion;
 
   factory PlanillaGastosAlimentosModel.fromJson(Map<String, dynamic> json) => PlanillaGastosAlimentosModel(
     viajeFk: json["ViajeFk"],
@@ -418,21 +418,21 @@ class PlanillaGastosEstacionamientoModel {
     this.idAccion,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String item;
-  //DateTime fecha;
-  String fecha;
-  String concepto;
-  String monto;
-  String fechaDoc;
-  String tipoComprobante;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String numero;
-  String usuario;
-  int idAccion;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? item;
+  //Date?Time fecha;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? fechaDoc;
+  String? tipoComprobante;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? numero;
+  String? usuario;
+  int? idAccion;
 
   factory PlanillaGastosEstacionamientoModel.fromJson(Map<String, dynamic> json) => PlanillaGastosEstacionamientoModel(
     viajeFk: json["ViajeFk"],
@@ -491,17 +491,17 @@ class PlanillaGastosMovilidadModel {
     this.idDetalle,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String fecha;
-  String concepto;
-  String monto;
-  String numeroPlanilla;
-  String fechaDoc;
-  String usuario;
-  int idAccion;
-  int idPlanilla;
-  String idDetalle;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? numeroPlanilla;
+  String? fechaDoc;
+  String? usuario;
+  int? idAccion;
+  int? idPlanilla;
+  String? idDetalle;
 
   factory PlanillaGastosMovilidadModel.fromJson(Map<String, dynamic> json) => PlanillaGastosMovilidadModel(
     viajeFk: json["ViajeFk"],
@@ -556,21 +556,21 @@ class PlanillaGastosHospedajeModel {
     this.idDetalle,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String fecha;
-  String concepto;
-  String monto;
-  String fechaDoc;
-  String tipoComprobante;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String numero;
-  String usuario;
-  String idAccion;
-  String idPlanilla;
-  String idDetalle;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? fechaDoc;
+  String? tipoComprobante;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? numero;
+  String? usuario;
+  String? idAccion;
+  String? idPlanilla;
+  String? idDetalle;
 
   factory PlanillaGastosHospedajeModel.fromJson(Map<String, dynamic> json) => PlanillaGastosHospedajeModel(
     viajeFk: json["ViajeFk"],
@@ -631,21 +631,21 @@ class PlanillaGastosPasajesModel {
     this.idDetalle,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String fecha;
-  String concepto;
-  String monto;
-  String fechaDoc;
-  String tipoComprobante;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String numero;
-  String usuario;
-  String idAccion;
-  String idPlanilla;
-  String idDetalle;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? fechaDoc;
+  String? tipoComprobante;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? numero;
+  String? usuario;
+  String? idAccion;
+  String? idPlanilla;
+  String? idDetalle;
 
   factory PlanillaGastosPasajesModel.fromJson(Map<String, dynamic> json) => PlanillaGastosPasajesModel(
     viajeFk: json["ViajeFk"],
@@ -707,22 +707,22 @@ class PlanillaGastosComprasModel {
     this.idDetalle,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String fecha;
-  String concepto;
-  String monto;
-  String tipoCompra;
-  String fechaDoc;
-  String tipoComprobante;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String numero;
-  String usuario;
-  String idAccion;
-  String idPlanilla;
-  String idDetalle;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? tipoCompra;
+  String? fechaDoc;
+  String? tipoComprobante;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? numero;
+  String? usuario;
+  String? idAccion;
+  String? idPlanilla;
+  String? idDetalle;
 
   factory PlanillaGastosComprasModel.fromJson(Map<String, dynamic> json) => PlanillaGastosComprasModel(
     viajeFk: json["ViajeFk"],
@@ -787,22 +787,22 @@ class PlanillaGastosServiciosModel {
     this.idDetalle,
   });
 
-  String viajeFk;
-  String tipoDocGasto;
-  String fecha;
-  String concepto;
-  String monto;
-  String tipoServicio;
-  String fechaDoc;
-  String tipoComprobante;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String numero;
-  String usuario;
-  String idAccion;
-  String idPlanilla;
-  String idDetalle;
+  String? viajeFk;
+  String? tipoDocGasto;
+  String? fecha;
+  String? concepto;
+  String? monto;
+  String? tipoServicio;
+  String? fechaDoc;
+  String? tipoComprobante;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? numero;
+  String? usuario;
+  String? idAccion;
+  String? idPlanilla;
+  String? idDetalle;
 
   factory PlanillaGastosServiciosModel.fromJson(Map<String, dynamic> json) => PlanillaGastosServiciosModel(
     viajeFk: json["ViajeFk"],
@@ -866,19 +866,19 @@ class PlanillaGastosVisorModel {
     this.resultado,
   });
 
-  String descripcion;
-  String fechaDoc;
-  String lugar;
-  String monto;
-  String numero;
-  String numeroPlanilla;
-  String ruc;
-  String razonSocial;
-  String serie;
-  String tipoComSer;
-  String tipoComprobante;
-  String mensaje;
-  String resultado;
+  String? descripcion;
+  String? fechaDoc;
+  String? lugar;
+  String? monto;
+  String? numero;
+  String? numeroPlanilla;
+  String? ruc;
+  String? razonSocial;
+  String? serie;
+  String? tipoComSer;
+  String? tipoComprobante;
+  String? mensaje;
+  String? resultado;
 
   factory PlanillaGastosVisorModel.fromJson(Map<String, dynamic> json) => PlanillaGastosVisorModel(
     descripcion: json["Descripcion"],
@@ -923,9 +923,9 @@ class PlanillaGastosConsultaSunatModel {
     this.ruc,
   });
 
-  String direccion;
-  String razonSocial;
-  String ruc;
+  String? direccion;
+  String? razonSocial;
+  String? ruc;
 
   factory PlanillaGastosConsultaSunatModel.fromJson(Map<String, dynamic> json) => PlanillaGastosConsultaSunatModel(
     direccion: json["Direccion"],

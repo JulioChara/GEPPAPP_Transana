@@ -10,13 +10,13 @@ class SubIncidenciasModel {
     this.resultado,
   });
 
-  String tipoDescripcion;
-  String tipoDescripcionCorta;
-  String tipoEstado;
-  String tipoId;
-  String tiposGeneralFk;
-  String mensaje;
-  String resultado;
+  String? tipoDescripcion;
+  String? tipoDescripcionCorta;
+  String? tipoEstado;
+  String? tipoId;
+  String? tiposGeneralFk;
+  String? mensaje;
+  String? resultado;
 
   factory SubIncidenciasModel.fromJson(Map<String, dynamic> json) => SubIncidenciasModel(
     tipoDescripcion: json["TipoDescripcion"],

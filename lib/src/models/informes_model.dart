@@ -7,17 +7,17 @@ String informeToJson(InformeModel data) => json.encode(data.toJson());
 
 
 class InformelistaModel {
-  String InunId;
-  String vehiculo;
-  String conductor;
-  String tipoprioridad;
-  String correlativo;
-  String concepto;
-  String tipoestado;
-  String fechacreacion;
-  String usercreacion;
-  String mensaje;
-  String resultado;
+  String? InunId;
+  String? vehiculo;
+  String? conductor;
+  String? tipoprioridad;
+  String? correlativo;
+  String? concepto;
+  String? tipoestado;
+  String? fechacreacion;
+  String? usercreacion;
+  String? mensaje;
+  String? resultado;
 
   InformelistaModel({
     this.InunId,
@@ -64,18 +64,18 @@ class InformelistaModel {
 
 
 class InformeModel {
-  String InunId;
-  String vehiculo;
-  String conductor;
-  String tipoprioridad;
-  String correlativo;
-  String concepto;
-  String tipoestado;
-  String fechacreacion;
-  String usercreacion;
-  String mensaje;
-  String resultado;
-  List<ProductoInformes> Detalle;
+  String? InunId;
+  String? vehiculo;
+  String? conductor;
+  String? tipoprioridad;
+  String? correlativo;
+  String? concepto;
+  String? tipoestado;
+  String? fechacreacion;
+  String? usercreacion;
+  String? mensaje;
+  String? resultado;
+  List<ProductoInformes>? Detalle;
 
   InformeModel({
     this.InunId,
@@ -104,7 +104,7 @@ class InformeModel {
     usercreacion: json["usercreacion"] ?? "",
     mensaje: json["mensaje"] ?? "",
     resultado: json["resultado"] ?? "",
-    Detalle: List<ProductoInformes>.from(json["Detalle"].map((x) => ProductoInformes.fromJson(x))),
+    Detalle: List<ProductoInformes>.from(json["Detalle"]?.map((x) => ProductoInformes.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -119,6 +119,6 @@ class InformeModel {
     "usercreacion": usercreacion,
     "mensaje": mensaje,
     "resultado": resultado,
-    "Detalle": List<dynamic>.from(Detalle.map((x) => x.toJson())),
+    "Detalle": List<dynamic>.from(Detalle!.map((x) => x.toJson())),
   };
 }

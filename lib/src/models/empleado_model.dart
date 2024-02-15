@@ -9,11 +9,11 @@ class EmpleadoModel {
     this.resultado,
   });
 
-  String entiId;
-  String entiNroDocumento;
-  String entiRazonSocial;
-  String mensaje;
-  String resultado;
+  String? entiId;
+  String? entiNroDocumento;
+  String? entiRazonSocial;
+  String? mensaje;
+  String? resultado;
 
   factory EmpleadoModel.fromJson(Map<String, dynamic> json) => EmpleadoModel(
     entiId: json["EntiId"],

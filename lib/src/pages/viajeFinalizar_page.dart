@@ -188,7 +188,7 @@ class _viajeFinalizarPageState extends State<viajeFinalizarPage> {
 
                           print(viajeModel.toJson());
                           // if(viajeModel.precinto.length >1 && viajeModel.precinto2.length >1){
-                          if(viajeModel.precinto.length >1){
+                          if(viajeModel.precinto!.length >1){
                             showDialog(
                                 context: context,
                                 barrierDismissible: true,
@@ -305,8 +305,8 @@ class _viajeFinalizarPageState extends State<viajeFinalizarPage> {
     ViajeService service = new ViajeService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
-    String idVijae = await prefs.getString("IdVijae");
+    String id = await prefs.getString("idUser")!;
+    String idVijae = await prefs.getString("IdVijae")!;
 
     print(id);
     print(idVijae);

@@ -11,8 +11,8 @@ import 'package:transana_app/src/services/viaje_services.dart';
 import 'package:transana_app/src/widgets/mensaje_widget.dart';
 
 class PlanillaAlimentosWidget extends StatefulWidget {
-  String idViajeW = "";
-  String tipoDocGasto = "";
+  String? idViajeW = "";
+  String? tipoDocGasto = "";
   PlanillaAlimentosWidget({this.idViajeW, this.tipoDocGasto});
 
   @override
@@ -36,13 +36,13 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
 
   String selDate = DateTime.now().toString().substring(0, 10);
 
-  static List<EmpleadoModel> entidades = new List<EmpleadoModel>(); // empleado
-  static List<ViajeDocumentosModel> viajedocumentos = new List<ViajeDocumentosModel>(); // empleado
+  static List<EmpleadoModel> entidades =[]; // empleado
+  static List<ViajeDocumentosModel> viajedocumentos = []; // empleado
   GlobalKey<AutoCompleteTextFieldState<EmpleadoModel>> keyEntidad = new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<ViajeDocumentosModel>> keyViajDocs = new GlobalKey();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  AutoCompleteTextField searchEntidad;
-  AutoCompleteTextField searchViajDocu;
+  AutoCompleteTextField? searchEntidad;
+  AutoCompleteTextField? searchViajDocu;
 
   String idEntidad = "";
 
@@ -65,8 +65,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
       PlanillaGastosAlimentosModel();
   PlanillaGastosServices _saveAlimentosServices = PlanillaGastosServices();
   ViajeService _viajeService = ViajeService();
-  static List<PlanillaComprobantesModel> comprobantes =
-      new List<PlanillaComprobantesModel>();
+  static List<PlanillaComprobantesModel> comprobantes =[];
 
   @override
   void initState() {
@@ -82,7 +81,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
       viajedocumentos = await _viajeService.getViajeDocumentosRestList();
       entidades = await _saveAlimentosServices.getEntidadesList();
       comprobantes = await objPlanillaGastosServices.getTiposComprobantes();
-      defComprobante = comprobantes[0].tipoId;
+      defComprobante = comprobantes[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -119,7 +118,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
 
   void consultaSunat(String ruc) async {
     consultaRuc = await objPlanillaGastosServices.getConsultaSunat(ruc);
-    _opcrazonController.text = consultaRuc.razonSocial;  //newwww
+    _opcrazonController.text = consultaRuc.razonSocial!;  //newwww
     idEntidad = "0";  // sera enciado y se analizara al crear la entidad xd
     setState(() {
       loading = false;
@@ -133,7 +132,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
       globDocu = false;
       globmaxDoc = 0;
       globidDoc = "";
-      defComprobante = comprobantes[0].tipoId; //FACTURA
+      defComprobante = comprobantes[0].tipoId!; //FACTURA
       _opcViajDocController.text = "";
       _opcrucController.text = "";
       _opcrazonController.text = "";
@@ -167,7 +166,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _saveAlimentosModel.viajeFk = widget.idViajeW;
       _saveAlimentosModel.tipoDocGasto = widget.tipoDocGasto;
       _saveAlimentosModel.concepto = _descripcionController.text;
@@ -323,7 +322,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
                                   .map(
                                     (e) => DropdownMenuItem(
                                       child: Text(
-                                        e.tipoDescripcion,
+                                        e.tipoDescripcion!,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -331,8 +330,8 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
                                     ),
                                   )
                                   .toList(),
-                              onChanged: (value) {
-                                defComprobante = value;
+                              onChanged: (String? value) {
+                                defComprobante = value!;
                                 setState(() {});
                               },
                             )
@@ -445,8 +444,8 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                         ),
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return "Ingrese una Razon Social";
                           }
                           return null;
@@ -479,8 +478,8 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              validator: (String value) {
-                                if (value.isEmpty) {
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
                                   return "Ingrese una Serie";
                                 }
                                 return null;
@@ -513,8 +512,8 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              validator: (String value) {
-                                if (value.isEmpty) {
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
                                   return "Ingrese un Numero";
                                 }
                                 return null;
@@ -545,8 +544,8 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                         ),
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
                             return "Ingresa un Monto";
                           }
                           return null;
@@ -609,7 +608,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -664,16 +663,16 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
       ),
       itemFilter: (item, query) {
         //return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
-        return item.entiNroDocumento.toLowerCase().contains(query.toLowerCase());
+        return item.entiNroDocumento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEntidad.textField.controller.text = item.entiNroDocumento;
-          _opcrazonController.text = item.entiRazonSocial;
-          idEntidad = item.entiId;
+          searchEntidad!.textField!.controller!.text = item.entiNroDocumento!;
+          _opcrazonController.text = item.entiRazonSocial!;
+          idEntidad = item.entiId!;
         });
       },
       itemBuilder: (context, item) {
@@ -692,7 +691,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
         children: <Widget>[
           Expanded(
             child: Text(
-              empleado.entiRazonSocial,
+              empleado.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,
@@ -750,25 +749,25 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
       ),
       itemFilter: (item, query) {
         //return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
-        return item.minimalista.toLowerCase().contains(query.toLowerCase());
+        return item.minimalista!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.minimalista.compareTo(b.minimalista);
+        return a.minimalista!.compareTo(b.minimalista!);
       },
       itemSubmitted: (item) {
         setState(() {
           globDocu = true;
-          globmaxDoc = double.parse(item.restante);
-          globidDoc = item.idDoc;
+          globmaxDoc = double.parse(item.restante!);
+          globidDoc = item.idDoc!;
 
-          searchViajDocu.textField.controller.text = item.minimalista;
-          _opcrazonController.text = item.razonSocial;
-          _opcrucController.text = item.ruc;
-          defComprobante = item.tipoDocumentoFk;
-          _opcserieController.text = item.serie;
-          _opcnumeroController.text = item.numero;
-          _montoController.text = "${double.parse(item.restante).toStringAsFixed(2)}";
-          idEntidad = item.entidadFk;
+          searchViajDocu!.textField!.controller!.text = item.minimalista!;
+          _opcrazonController.text = item.razonSocial!;
+          _opcrucController.text = item.ruc!;
+          defComprobante = item.tipoDocumentoFk!;
+          _opcserieController.text = item.serie!;
+          _opcnumeroController.text = item.numero!;
+          _montoController.text = "${double.parse(item.restante!).toStringAsFixed(2)}";
+          idEntidad = item.entidadFk!;
 
         });
       },
@@ -788,7 +787,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
         children: <Widget>[
           Expanded(
             child: Text(
-              documento.minimalista ,
+              documento.minimalista! ,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,
@@ -799,7 +798,7 @@ class _PlanillaAlimentosWidgetState extends State<PlanillaAlimentosWidget> {
           ),
           Expanded(
             child: Text(
-              "${double.parse(documento.restante).toStringAsFixed(2)}",
+              "${double.parse(documento.restante!).toStringAsFixed(2)}",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,

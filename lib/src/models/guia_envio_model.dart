@@ -7,22 +7,22 @@ GuiaEnvioModel guiaModelFromJson(String str) => GuiaEnvioModel.fromJson(json.dec
 String guiaModelToJson(GuiaEnvioModel data) => json.encode(data.toJson());
 
 class GuiaEnvioModel {
-  String tipoProducto;
-  String tipoSituacion;
-  String cliente;
-  String remitente;
-  String destinatario;
-  String conductor;
-  String dirPartida;
-  String dirLlegada;
-  String placa;
-  String placaReferencial;
-  String usuario;
-  String serie;
-  String numero;
-  String guiaremision;
-  String fechaGuia;
-  List<Producto> detalle;
+  String? tipoProducto;
+  String? tipoSituacion;
+  String? cliente;
+  String? remitente;
+  String? destinatario;
+  String? conductor;
+  String? dirPartida;
+  String? dirLlegada;
+  String? placa;
+  String? placaReferencial;
+  String? usuario;
+  String? serie;
+  String? numero;
+  String? guiaremision;
+  String? fechaGuia;
+  List<Producto>? detalle;
 
   GuiaEnvioModel({
     this.tipoProducto,
@@ -59,7 +59,7 @@ class GuiaEnvioModel {
     numero: json["numero"],
     guiaremision: json["guiaremision"],
     fechaGuia: json["fechaGuia"],
-    detalle: List<Producto>.from(json["Detalle"].map((x) => Producto.fromJson(x))),
+    detalle: List<Producto>.from(json["Detalle"]?.map((x) => Producto.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -78,7 +78,7 @@ class GuiaEnvioModel {
     "numero": numero,
     "guiaremision": guiaremision,
     "fechaGuia": fechaGuia,
-    "Detalle": List<dynamic>.from(detalle.map((x) => x.toJson())),
+    "Detalle": List<dynamic>.from(detalle!.map((x) => x.toJson())),
   };
 }
 

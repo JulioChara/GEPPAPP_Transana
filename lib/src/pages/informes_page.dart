@@ -175,7 +175,7 @@ class _InformePageState extends State<InformePage> {
             {
               if (snapshot.hasData) {
                 final informeModel = snapshot.data;
-                return informeModel.length > 0
+                return informeModel!.length > 0
                     ? ListView.builder(
                   itemCount: informeModel.length,
                   itemBuilder: (context, i) {
@@ -205,7 +205,7 @@ class _InformePageState extends State<InformePage> {
 
                               String anular = "Anular";
 
-                              List<String> choices = new List();
+                              List<String> choices = [];
 
                               if (informeModel[i].tipoestado =="ANULADO") {
                                } else {
@@ -215,7 +215,7 @@ class _InformePageState extends State<InformePage> {
 
                               return choices.map((String choice) {
                                 return PopupMenuItem<String>(
-                                  value: informeModel[i].InunId + ","+choice,
+                                  value: informeModel[i].InunId! + ","+choice,
                                   child: Text(choice),
                                 );
                               }).toList();
@@ -295,7 +295,7 @@ class _InformePageState extends State<InformePage> {
 
     InformeService service = new InformeService();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String  idUser =  prefs.getString('idUser') ;
+    String  idUser =  prefs.getString('idUser')! ;
 
     String res = await service.estadoAnularInforme(id,idUser);
 
@@ -353,7 +353,7 @@ class _InformePageState extends State<InformePage> {
 
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -368,7 +368,7 @@ class _InformePageState extends State<InformePage> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

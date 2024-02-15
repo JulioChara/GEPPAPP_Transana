@@ -89,7 +89,7 @@ class _ConsumoPageState extends State<ConsumoPage> {
             {
               if (snapshot.hasData) {
                 final consumoModel = snapshot.data;
-                return consumoModel.length > 0
+                return consumoModel!.length > 0
                     ? ListView.builder(
                   itemCount: consumoModel.length,
                   itemBuilder: (context, i) {
@@ -119,7 +119,7 @@ class _ConsumoPageState extends State<ConsumoPage> {
 
                               String anular = "Anular";
 
-                              List<String> choices = new List();
+                              List<String> choices = [];
 
                               //if (guiaModel[i].estadoSunat ==
                               //   "Rechazado Sunat") {
@@ -132,7 +132,7 @@ class _ConsumoPageState extends State<ConsumoPage> {
 
                               return choices.map((String choice) {
                                 return PopupMenuItem<String>(
-                                  value: consumoModel[i].idCompra + ","+choice,
+                                  value: consumoModel[i].idCompra! + ","+choice,
                                   child: Text(choice),
                                 );
                               }).toList();

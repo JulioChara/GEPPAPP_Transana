@@ -21,9 +21,8 @@ class InformeAdmPage extends StatefulWidget {
 
 class _InformeAdmPageState extends State<InformeAdmPage> {
   //String idUser = "";
-  static List<InformelistaModel> inFiltro = new List<InformelistaModel>();
-  static List<InformelistaModel> inFiltroMinimal =
-      new List<InformelistaModel>();
+  static List<InformelistaModel> inFiltro = [];
+  static List<InformelistaModel> inFiltroMinimal =[];
 
   var informe = new InformeService();
   var datailServices = new DetailServices();
@@ -49,7 +48,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
 
   Future<String> getIdRol() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
 
   getData() {
@@ -69,7 +68,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
       tempSearchList.addAll(informeModelList3);
       List<InformelistaModel> tempDataList = [];
       tempSearchList.forEach((element) {
-        if(element.vehiculo.toLowerCase().contains(query.toLowerCase())){
+        if(element.vehiculo!.toLowerCase().contains(query.toLowerCase())){
           tempDataList.add(element);
         }
       });
@@ -175,34 +174,30 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
                             ),
                             itemBuilder: (BuildContext context) {
                               String anular = "Anular";
-                              List<String> choices = new List();
+                              List<String> choices = [];
                               choices.add(anular);
                               choices.add("Ver Detalle");
                               return [
-                                informeModelList2[i].tipoestado == "INFORMADA"
-                                    ? PopupMenuItem<String>(
-                                        value: informeModelList2[i].InunId +
+                                if (informeModelList2[i].tipoestado == "INFORMADA") PopupMenuItem<String>(
+                                        value: informeModelList2[i].InunId! +
                                             "," +
                                             "Anular" +
                                             "," +
-                                            informeModelList2[i].vehiculo +
+                                            informeModelList2[i].vehiculo! +
                                             "," +
-                                            informeModelList2[i].conductor,
+                                            informeModelList2[i].conductor!,
                                         child: Text("Anular "),
-                                      )
-                                    : null,
-                                idRol == "1" || idRol == "13"
-                                    ? PopupMenuItem<String>(
-                                        value: informeModelList2[i].InunId +
+                                      ),
+                                if (idRol == "1" || idRol == "13") PopupMenuItem<String>(
+                                        value: informeModelList2[i].InunId! +
                                             "," +
                                             "VerDetalle" +
                                             "," +
-                                            informeModelList2[i].vehiculo +
+                                            informeModelList2[i].vehiculo! +
                                             "," +
-                                            informeModelList2[i].conductor,
+                                            informeModelList2[i].conductor!,
                                         child: Text("Ver Detalle"),
-                                      )
-                                    : null,
+                                      ),
                               ];
                             },
                             onSelected: choiceAction,
@@ -343,7 +338,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
             {
               if (snapshot.hasData) {
                 final informeModel = snapshot.data;
-                return informeModel.length > 0
+                return informeModel!.length > 0
                     ? ListView.builder(
                         itemCount: informeModel.length,
                         itemBuilder: (context, i) {
@@ -379,7 +374,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
                           // }else
 
                           print(informeModel[i]);
-                          print("cat" + informeModel[i].tipoestado);
+                          print("cat" + informeModel[i].tipoestado!);
                           return ListTile(
                             tileColor: miColor,
                             //  hoverColor: Colors.green,
@@ -413,35 +408,31 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
                                     ),
                                     itemBuilder: (BuildContext context) {
                                       String anular = "Anular";
-                                      List<String> choices = new List();
+                                      List<String> choices = [];
                                       choices.add(anular);
                                       choices.add("Ver Detalle");
                                       return [
-                                        informeModel[i].tipoestado ==
-                                                "INFORMADA"
-                                            ? PopupMenuItem<String>(
-                                                value: informeModel[i].InunId +
+                                        if (informeModel[i].tipoestado ==
+                                                "INFORMADA") PopupMenuItem<String>(
+                                                value: informeModel[i].InunId! +
                                                     "," +
                                                     "Anular" +
                                                     "," +
-                                                    informeModel[i].vehiculo +
+                                                    informeModel[i].vehiculo! +
                                                     "," +
-                                                    informeModel[i].conductor,
+                                                    informeModel[i].conductor!,
                                                 child: Text("Anular "),
-                                              )
-                                            : null,
-                                        idRol == "1" || idRol == "13"
-                                            ? PopupMenuItem<String>(
-                                                value: informeModel[i].InunId +
+                                              ),
+                                        if (idRol == "1" || idRol == "13") PopupMenuItem<String>(
+                                                value: informeModel[i].InunId! +
                                                     "," +
                                                     "VerDetalle" +
                                                     "," +
-                                                    informeModel[i].vehiculo +
+                                                    informeModel[i].vehiculo! +
                                                     "," +
-                                                    informeModel[i].conductor,
+                                                    informeModel[i].conductor!,
                                                 child: Text("Ver Detalle"),
-                                              )
-                                            : null,
+                                              ),
                                       ];
                                     },
                                     onSelected: choiceAction,
@@ -555,7 +546,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
   _anularInforme(String id) async {
     InformeService service = new InformeService();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String idUser = prefs.getString('idUser');
+    String idUser = prefs.getString('idUser')!;
 
     String res = await service.estadoAnularInforme(id, idUser);
 
@@ -602,7 +593,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
   }
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -618,7 +609,7 @@ class _InformeAdmPageState extends State<InformeAdmPage> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

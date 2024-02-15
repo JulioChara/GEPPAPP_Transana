@@ -18,8 +18,8 @@ class AlertaDetallesWidget extends StatefulWidget {
   // });
 
 
-  String tipoSub = "";
-  String idTab="";
+  String? tipoSub = "";
+  String? idTab="";
   AlertaDetallesWidget({
     this.tipoSub,
     this.idTab
@@ -66,8 +66,8 @@ class _AlertaDetallesWidgetState extends State<AlertaDetallesWidget> {
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
-    String idV = await prefs.getString("IdVehiculo");
+    String id = await prefs.getString("idUser")!;
+    String idV = await prefs.getString("IdVehiculo")!;
 
     String opc = "";
     if(widget.tipoSub == "Mantenimientos")
@@ -76,20 +76,20 @@ class _AlertaDetallesWidgetState extends State<AlertaDetallesWidget> {
       }else { opc ="0";}
 
 
-    listAlerta = await alertaService.getAlertaxId(opc, widget.idTab);
+    listAlerta = await alertaService.getAlertaxId(opc, widget.idTab!);
      print(listAlerta[0].idTab);
      print(listAlerta[0].fechaCaducidad);
 
-    _tipoGeneralController.text = listAlerta[0].documentoGeneral;
-    _tipoDocumentoController.text = listAlerta[0].tipoDocumentoFkDesc;
-    _docReferenciaController.text = listAlerta[0].documento;
-    _fechaCaducidadController.text = listAlerta[0].fechaCaducidad;
-    _kmCaducidadController.text = listAlerta[0].kmCaducidad;
-    _kmActualController.text = listAlerta[0].kmActual;
-    _kmMantenimientoController.text = listAlerta[0].kmMantenimiento;
+    _tipoGeneralController.text = listAlerta[0].documentoGeneral!;
+    _tipoDocumentoController.text = listAlerta[0].tipoDocumentoFkDesc!;
+    _docReferenciaController.text = listAlerta[0].documento!;
+    _fechaCaducidadController.text = listAlerta[0].fechaCaducidad!;
+    _kmCaducidadController.text = listAlerta[0].kmCaducidad!;
+    _kmActualController.text = listAlerta[0].kmActual!;
+    _kmMantenimientoController.text = listAlerta[0].kmMantenimiento!;
 
-    print("Llega: "+widget.tipoSub);
-    print("Llgea: "+widget.idTab);
+    print("Llega: "+widget.tipoSub!);
+    print("Llgea: "+widget.idTab!);
     isLoading = false;
     setState(() {});
   }

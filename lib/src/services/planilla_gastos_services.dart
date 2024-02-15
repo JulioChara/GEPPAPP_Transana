@@ -229,6 +229,7 @@ class PlanillaGastosServices {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -255,6 +256,7 @@ class PlanillaGastosServices {
 
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -283,6 +285,7 @@ class PlanillaGastosServices {
     } catch (e) {
 
       print(e);
+      return "0";
     }
   }
 
@@ -311,6 +314,7 @@ class PlanillaGastosServices {
     } catch (e) {
 
       print(e);
+      return "0";
     }
   }
 
@@ -336,6 +340,7 @@ class PlanillaGastosServices {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -360,6 +365,7 @@ class PlanillaGastosServices {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -383,6 +389,7 @@ class PlanillaGastosServices {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -408,6 +415,7 @@ class PlanillaGastosServices {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -434,6 +442,7 @@ class PlanillaGastosServices {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 
@@ -579,6 +588,7 @@ class PlanillaGastosServices {
       return decodeData["resultado"];
     } catch (e) {
       print(e);
+      return "0";
     }
   }
 

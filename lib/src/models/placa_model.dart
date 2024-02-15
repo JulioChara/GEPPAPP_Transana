@@ -6,11 +6,11 @@ List<Placa> placaFromJson(String str) => List<Placa>.from(json.decode(str).map((
 String placaToJson(List<Placa> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Placa {
-  String categoria;
-  String descripcion;
-  String id;
-  String Serie;
-  String titulo;
+  String? categoria;
+  String? descripcion;
+  String? id;
+  String? Serie;
+  String? titulo;
 
   Placa({
     this.categoria,

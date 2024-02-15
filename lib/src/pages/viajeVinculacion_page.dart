@@ -21,11 +21,11 @@ class _viajeVinculacionPageState extends State<viajeVinculacionPage> {
   bool loading = true;
   bool loadingSend = false;
 
-  static List<vinculacionModel> vinculacion = new List<vinculacionModel>();
+  static List<vinculacionModel> vinculacion = [];
   GlobalKey<AutoCompleteTextFieldState<vinculacionModel>> keyVinculacion = new GlobalKey();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AutoCompleteTextField searchVinculacion;
+  AutoCompleteTextField? searchVinculacion;
   TextEditingController DocumentoEditingController = new TextEditingController();
   TextEditingController ProveedorEditingController = new TextEditingController();
   TextEditingController CantidadEditingController = new TextEditingController();
@@ -294,8 +294,8 @@ class _viajeVinculacionPageState extends State<viajeVinculacionPage> {
     ConsumoService service = new ConsumoService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
-    String idVijae = await prefs.getString("IdVijae");
+    String id = await prefs.getString("idUser")!;
+    String idVijae = await prefs.getString("IdVijae")!;
 
     print(id);
     print(idVijae);
@@ -392,24 +392,24 @@ class _viajeVinculacionPageState extends State<viajeVinculacionPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchVinculacion.textField.controller.text = item.descripcion;
+          searchVinculacion!.textField!.controller!.text = item.descripcion!;
           ConsumoModel.idCompra = item.Id;
           print(ConsumoModel.idCompra);
           ConsumoModel.proveedor = item.proveedor;
           ConsumoModel.documento = item.documento;
           ConsumoModel.galones = item.cantidad;
           ConsumoModel.total = item.total;
-          DocumentoEditingController.text = item.documento;
-          ProveedorEditingController.text = item.proveedor;
-          CantidadEditingController.text = item.cantidad;
-          TotalEditingController.text = item.total;
+          DocumentoEditingController.text = item.documento!;
+          ProveedorEditingController.text = item.proveedor!;
+          CantidadEditingController.text = item.cantidad!;
+          TotalEditingController.text = item.total!;
 
         });
       },
@@ -428,7 +428,7 @@ class _viajeVinculacionPageState extends State<viajeVinculacionPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              vinculacion.documento,
+              vinculacion.documento!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -441,7 +441,7 @@ class _viajeVinculacionPageState extends State<viajeVinculacionPage> {
           ),
           Flexible(
             child: Text(
-              vinculacion.proveedor,
+              vinculacion.proveedor!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,

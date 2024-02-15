@@ -7,9 +7,9 @@ class IdsModel {
     this.usuario,
   });
 
-  String idC;
-  String idD;
-  String usuario;
+  String? idC;
+  String? idD;
+  String? usuario;
 
   factory IdsModel.fromJson(Map<String, dynamic> json) => IdsModel(
     idC: json["idC"],

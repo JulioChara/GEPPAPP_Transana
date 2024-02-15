@@ -62,7 +62,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
 
   Future<String> getIdRol() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
 
   getData() {
@@ -81,7 +81,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
       tempSearchList.addAll(informeModelList3);
       List<VehiculosModel> tempDataList = [];
       tempSearchList.forEach((element) {
-        if (element.vehiPlaca.toLowerCase().contains(query.toLowerCase())) {
+        if (element.vehiPlaca!.toLowerCase().contains(query.toLowerCase())) {
           tempDataList.add(element);
         }
       });
@@ -160,12 +160,12 @@ class _VehiculosPageState extends State<VehiculosPage> {
                             ),
                             itemBuilder: (BuildContext context) {
                               String anular = "Anular";
-                              List<String> choices = new List();
+                              List<String> choices = [];
                               choices.add(anular);
                               choices.add("Ver Detalle");
                               return [
                                 PopupMenuItem<String>
-                                  (value: informeModelList2[i].vehiId +
+                                  (value: informeModelList2[i].vehiId! +
                                     "," +
                                     "Alertas",
                                   child: Text("Alertas"),
@@ -218,7 +218,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
 
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -234,7 +234,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),

@@ -10,8 +10,8 @@ import 'package:transana_app/src/services/informes_preventivos_services.dart';
 
 class AlertasRenovarMantenimiento extends StatefulWidget {
 
-  String idVeh = "";
-  String idMan = "";
+  String? idVeh = "";
+  String? idMan = "";
   AlertasRenovarMantenimiento({this.idVeh, this.idMan});
 
   @override
@@ -47,13 +47,13 @@ class _AlertasRenovarMantenimientoState extends State<AlertasRenovarMantenimient
 
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
+    String id = await prefs.getString("idUser")!;
     loading = false;
     setState(() {});
   }
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _updateAlertaDocModel.idC = widget.idMan;
       _updateAlertaDocModel.vehiculoFk = widget.idVeh;
       _updateAlertaDocModel.fechaEmision = selDateini;
@@ -204,7 +204,7 @@ class _AlertasRenovarMantenimientoState extends State<AlertasRenovarMantenimient
 
 
   Future<Null> _selectSelDateini(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         //initialDate: new DateTime.now(),
@@ -224,7 +224,7 @@ class _AlertasRenovarMantenimientoState extends State<AlertasRenovarMantenimient
 
 
   Future<Null> _selectSelDatefin(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(selDatefin),

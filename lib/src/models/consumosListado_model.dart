@@ -5,16 +5,16 @@ consumoModel conusmoFromJson(String str) => consumoModel.fromJson(json.decode(st
 String consumoToJson(consumoModel data) => json.encode(data.toJson());
 
 class consumoModel {
-  String idCompra;
-  String idViaje;
-  String fecha;
-  String documento;
-  String galones;
-  String proveedor;
-  String total;
-  String usercreacion;
-  String mensaje;
-  String resultado;
+  String? idCompra;
+  String? idViaje;
+  String? fecha;
+  String? documento;
+  String? galones;
+  String? proveedor;
+  String? total;
+  String? usercreacion;
+  String? mensaje;
+  String? resultado;
 
   consumoModel({
     this.idCompra,
@@ -60,13 +60,13 @@ class consumoModel {
 
 
 class vinculacionModel {
-  String Id;
-  String fecha;
-  String documento;
-  String cantidad;
-  String proveedor;
-  String total;
-  String descripcion;
+  String? Id;
+  String? fecha;
+  String? documento;
+  String? cantidad;
+  String? proveedor;
+  String? total;
+  String? descripcion;
 
 
   vinculacionModel({

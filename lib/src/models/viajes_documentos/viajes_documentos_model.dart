@@ -21,23 +21,23 @@ class ViajeDocumentosModel {
     this.usuario,
   });
 
-  String descripcion;
-  String entidadFk;
-  String fechaDocumento;
-  String idAccion;
-  String idDoc;
-  String mensaje;
-  String monto;
-  String numero;
-  String razonSocial;
-  String minimalista;
-  String restante;
-  String resultado;
-  String ruc;
-  String serie;
-  String tipoDocumentoFk;
-  String tipoDocumentoFkDesc;
-  String usuario;
+  String? descripcion;
+  String? entidadFk;
+  String? fechaDocumento;
+  String? idAccion;
+  String? idDoc;
+  String? mensaje;
+  String? monto;
+  String? numero;
+  String? razonSocial;
+  String? minimalista;
+  String? restante;
+  String? resultado;
+  String? ruc;
+  String? serie;
+  String? tipoDocumentoFk;
+  String? tipoDocumentoFkDesc;
+  String? usuario;
 
   factory ViajeDocumentosModel.fromJson(Map<String, dynamic> json) => ViajeDocumentosModel(
     descripcion: json["descripcion"],

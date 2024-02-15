@@ -31,21 +31,20 @@ class _GeneralPageState extends State<GeneralPage> {
   bool loading = true;
   bool loadingSend = false;
 
-  static List<Conductor> conductores = new List<Conductor>();
-  static List<Cliente> clientes = new List<Cliente>();
-  static List<Remitente> remitentes = new List<Remitente>();
-  static List<Destinatario> destinatarios = new List<Destinatario>();
+  static List<Conductor> conductores =  [];
+  static List<Cliente> clientes =  [];
+  static List<Remitente> remitentes =  [];
+  static List<Destinatario> destinatarios =  [];
 
-  static List<Placa> placas = new List<Placa>();
-  static List<TipoTipo> tipoTipos = new List<TipoTipo>();
-  static List<PlacaPreferencial> placasPreferenciales =
-      new List<PlacaPreferencial>();
-  static List<TipoSituacion> situacion = new List<TipoSituacion>();
-  static List<TipoProducto> producto = new List<TipoProducto>();
+  static List<Placa> placas = [];
+  static List<TipoTipo> tipoTipos = [];
+  static List<PlacaPreferencial> placasPreferenciales = [];
+  static List<TipoSituacion> situacion =[];
+  static List<TipoProducto> producto = [];
   static List<SubProductosModel> subproducto = [];
   static List<SubClientesModel> subclientes = [];
 
-  List<Producto> productoLista = new List<Producto>();
+  List<Producto> productoLista =[];
 
   GlobalKey<AutoCompleteTextFieldState<Conductor>> keyConductor =  new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<Cliente>> keyCliente = new GlobalKey();
@@ -59,15 +58,15 @@ class _GeneralPageState extends State<GeneralPage> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AutoCompleteTextField searchConductor;
-  AutoCompleteTextField searchCliente;
-  AutoCompleteTextField searchRemitente;
-  AutoCompleteTextField searchDestinatario;
-  AutoCompleteTextField searchPlaca;
-  AutoCompleteTextField searchPlacaPreferencial;
-  AutoCompleteTextField searchSituacion;
-  AutoCompleteTextField searchProducto;
-  AutoCompleteTextField searchTipoTipos;
+  AutoCompleteTextField? searchConductor;
+  AutoCompleteTextField? searchCliente;
+  AutoCompleteTextField? searchRemitente;
+  AutoCompleteTextField? searchDestinatario;
+  AutoCompleteTextField? searchPlaca;
+  AutoCompleteTextField? searchPlacaPreferencial;
+  AutoCompleteTextField? searchSituacion;
+  AutoCompleteTextField? searchProducto;
+  AutoCompleteTextField? searchTipoTipos;
 
   TextEditingController direccionOrigenEditingController = new TextEditingController();
   TextEditingController guiaremisionEditingController = new TextEditingController();
@@ -89,23 +88,23 @@ class _GeneralPageState extends State<GeneralPage> {
 
   GuiaEnvioModel guiaModel = new GuiaEnvioModel();
 
-  Placa _selectedPlaca;
-  PlacaPreferencial _selectedPlacaReferencial;
+  Placa? _selectedPlaca;
+  PlacaPreferencial? _selectedPlacaReferencial;
 
-  TipoProducto _selectedTipoProducto;
-  SubProductosModel _selectedTipoSubProducto;
-  TipoSituacion _selectedTipoSituacion;
-  TipoTipo _selectedTipoTipo;
-  SubClientesModel _selectedTipoSubClientes;
+  TipoProducto? _selectedTipoProducto;
+  SubProductosModel? _selectedTipoSubProducto;
+  TipoSituacion? _selectedTipoSituacion;
+  TipoTipo? _selectedTipoTipo;
+  SubClientesModel? _selectedTipoSubClientes;
 
 
-  List<DropdownMenuItem<Placa>> _placaDropdownMenuItems;
-  List<DropdownMenuItem<PlacaPreferencial>> _placaReferencialDropdownMenuItems;
-  List<DropdownMenuItem<TipoProducto>> _productoReferencialDropdownMenuItems;
-  List<DropdownMenuItem<SubProductosModel>> _subproductoReferencialDropdownMenuItems;
-  List<DropdownMenuItem<TipoSituacion>> _situacionReferencialDropdownMenuItems;
-  List<DropdownMenuItem<TipoTipo>> _tipoTipoReferencialDropdownMenuItems;
-  List<DropdownMenuItem<SubClientesModel>> _subclientesDropdownMenuItems;
+  List<DropdownMenuItem<Placa>>? _placaDropdownMenuItems;
+  List<DropdownMenuItem<PlacaPreferencial>>? _placaReferencialDropdownMenuItems;
+  List<DropdownMenuItem<TipoProducto>>? _productoReferencialDropdownMenuItems;
+  List<DropdownMenuItem<SubProductosModel>>? _subproductoReferencialDropdownMenuItems;
+  List<DropdownMenuItem<TipoSituacion>>? _situacionReferencialDropdownMenuItems;
+  List<DropdownMenuItem<TipoTipo>>? _tipoTipoReferencialDropdownMenuItems;
+  List<DropdownMenuItem<SubClientesModel>>? _subclientesDropdownMenuItems;
 
 
   void getData() async {
@@ -201,50 +200,50 @@ class _GeneralPageState extends State<GeneralPage> {
 
   List<DropdownMenuItem<Placa>> buildDropDownMenuItems(List placas) {
 
-    List<DropdownMenuItem<Placa>> items = List();
+    List<DropdownMenuItem<Placa>> items = [];
 
     for (Placa placa in placas) {
-      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion),));
+      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion!),));
     }
     return items;
   }
 
 
   List<DropdownMenuItem<PlacaPreferencial>> buildPlacaReferencialDropDownMenuItems(List placas) {
-    List<DropdownMenuItem<PlacaPreferencial>> items = List();
+    List<DropdownMenuItem<PlacaPreferencial>> items = [];
     for (PlacaPreferencial placa in placas) {
-      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion),));
+      items.add(DropdownMenuItem( value: placa, child: Text(placa.descripcion!),));
     }
     return items;
   }
 
   List<DropdownMenuItem<TipoSituacion>> buildSituacionReferencialDropDownMenuItems(List lista) {
-    List<DropdownMenuItem<TipoSituacion>> items = List();
+    List<DropdownMenuItem<TipoSituacion>> items = [];
     for (TipoSituacion p in lista) {
-      items.add(DropdownMenuItem( value: p , child: Text(p .descripcion),));
+      items.add(DropdownMenuItem( value: p , child: Text(p .descripcion!),));
     }
     return items;
   }
 
   List<DropdownMenuItem<TipoProducto>> buildProductoReferencialDropDownMenuItems(List lista) {
-    List<DropdownMenuItem<TipoProducto>> items = List();
+    List<DropdownMenuItem<TipoProducto>> items = [];
     for (TipoProducto p  in lista) {
-      items.add(DropdownMenuItem( value: p , child: Text(p .descripcion),));
+      items.add(DropdownMenuItem( value: p , child: Text(p .descripcion!),));
     }
     return items;
   }
   List<DropdownMenuItem<SubProductosModel>> buildSubProductoReferencialDropDownMenuItems(List lista) {
     List<DropdownMenuItem<SubProductosModel>> items = [];
     for (SubProductosModel p  in lista) {
-      items.add(DropdownMenuItem( value: p , child: Text(p .tipoDescripcion),));
+      items.add(DropdownMenuItem( value: p , child: Text(p .tipoDescripcion!),));
     }
     return items;
   }
 
   List<DropdownMenuItem<TipoTipo>> buildTipoTipoReferencialDropDownMenuItems(List lista) {
-    List<DropdownMenuItem<TipoTipo>> items = List();
+    List<DropdownMenuItem<TipoTipo>> items = [];
     for (TipoTipo p  in lista) {
-      items.add(DropdownMenuItem( value: p , child: Text(p .descripcion),));
+      items.add(DropdownMenuItem( value: p , child: Text(p .descripcion!),));
     }
     return items;
   }
@@ -252,7 +251,7 @@ class _GeneralPageState extends State<GeneralPage> {
   List<DropdownMenuItem<SubClientesModel>> buildSubClientesDropDownMenuItems(List lista) {
     List<DropdownMenuItem<SubClientesModel>> items = [];
     for (SubClientesModel p  in lista) {
-      items.add(DropdownMenuItem( value: p , child: Text(p .subClientesFkDesc),));
+      items.add(DropdownMenuItem( value: p , child: Text(p .subClientesFkDesc!),));
     }
     return items;
   }
@@ -260,64 +259,64 @@ class _GeneralPageState extends State<GeneralPage> {
 
 
 
-  onChangeDropdownItem(Placa selectedPlaca) {
-    guiaModel.placa = selectedPlaca.descripcion;
-    serieEditingController.text = selectedPlaca.Serie;
-    guiaModel.serie = selectedPlaca.Serie;
+  onChangeDropdownItem(Placa? selectedPlaca) {
+    guiaModel.placa = selectedPlaca!.descripcion;
+    serieEditingController.text = selectedPlaca!.Serie!;
+    guiaModel.serie = selectedPlaca!.Serie;
     setState(() {
       _selectedPlaca = selectedPlaca;
-      print(_selectedPlaca.descripcion);
+      print(_selectedPlaca!.descripcion);
     });
   }
 
-  onPlancasReferencialChangeDropdownItem(PlacaPreferencial selectedPlaca) {
-    guiaModel.placaReferencial = selectedPlaca.descripcion;
+  onPlancasReferencialChangeDropdownItem(PlacaPreferencial? selectedPlaca) {
+    guiaModel.placaReferencial = selectedPlaca!.descripcion;
     setState(() {
       _selectedPlacaReferencial = selectedPlaca;
-      print(_selectedPlacaReferencial.descripcion);
+      print(_selectedPlacaReferencial!.descripcion);
     });
   }
 
-  onTipoProductoChangeDropdownItem(TipoProducto selected) {
+  onTipoProductoChangeDropdownItem(TipoProducto? selected) {
     setState(() {
       _selectedTipoProducto = selected;
-      print(_selectedTipoProducto.descripcion);
+      print(_selectedTipoProducto!.descripcion);
 
-      ActualizadoresTipo(2, selected.id);  //
+      ActualizadoresTipo(2, selected!.id!);  //
     });
   }
-  onTipoSubProductoChangeDropdownItem(SubProductosModel selected) {
+  onTipoSubProductoChangeDropdownItem(SubProductosModel? selected) {
     setState(() {
       _selectedTipoSubProducto = selected;
-      print(_selectedTipoSubProducto.tipoDescripcion);
-      SetearDescripcion(_selectedTipoSubProducto.tipoId);
+      print(_selectedTipoSubProducto!.tipoDescripcion);
+      SetearDescripcion(_selectedTipoSubProducto!.tipoId!);
     });
 
   }
 
-  onTipoSituacionChangeDropdownItem(TipoSituacion selected) {
-    guiaModel.tipoSituacion = selected.id;
+  onTipoSituacionChangeDropdownItem(TipoSituacion? selected) {
+    guiaModel.tipoSituacion = selected!.id;
     setState(() {
       _selectedTipoSituacion = selected;
-      print(_selectedTipoSituacion.descripcion);
+      print(_selectedTipoSituacion!.descripcion);
     });
   }
 
-  onTipoTipoChangeDropdownItem(TipoTipo selected) {
+  onTipoTipoChangeDropdownItem(TipoTipo? selected) {
     _selectedTipoTipo = selected;
-    guiaModel.tipoProducto = selected.id;
+    guiaModel.tipoProducto = selected!.id;
     setState(() {
       _selectedTipoTipo = selected;
-      print(_selectedTipoTipo.descripcion);
+      print(_selectedTipoTipo!.descripcion);
     });
   }
-  onTipoSubClientesChangeDropdownItem(SubClientesModel selected) {
+  onTipoSubClientesChangeDropdownItem(SubClientesModel? selected) {
     setState(() {
       print(":3");
       _selectedTipoSubClientes = selected;
 
       // _selectedTipoSubClientes = subclientes.first;
-      print(_selectedTipoSubClientes.subClientesFkDesc);
+      print(_selectedTipoSubClientes!.subClientesFkDesc);
       print(":3 b");
       // SetearDescripcion(_selectedTipoSubClientes!.tipoId!);
     });
@@ -328,17 +327,17 @@ class _GeneralPageState extends State<GeneralPage> {
 
   void SetearDescripcion(String id){
 
-    String idPro = _selectedTipoProducto.id;
+    String idPro = _selectedTipoProducto!.id!;
     String prodText = "";
     switch(idPro) {
       case "86": //COMBUSTIBLE
         prodText = "SERVICIO DE FLETE DE COMBUSTIBLE";
         break; // The switch statement must be told to exit, or it will execute every case.
       default:
-        prodText =_selectedTipoProducto.descripcion;
+        prodText =_selectedTipoProducto!.descripcion!;
     }
-    if(_selectedTipoSubProducto.tipoId!= "0"){
-      prodText = prodText + " - " +_selectedTipoSubProducto.tipoDescripcion;
+    if(_selectedTipoSubProducto!.tipoId!= "0"){
+      prodText = prodText + " - " +_selectedTipoSubProducto!.tipoDescripcion!;
     }
     // else{
     //   descripcionEditingController.text = selected!.descripcion!;
@@ -843,7 +842,7 @@ class _GeneralPageState extends State<GeneralPage> {
                                       precioEditingController.text.length > 0
                                   ? () {
                                       var prod = new Producto(
-                                          productoId: _selectedTipoProducto.id,
+                                          productoId: _selectedTipoProducto!.id,
                                           producto:
                                               descripcionEditingController.text,
                                           cantidad:
@@ -855,7 +854,7 @@ class _GeneralPageState extends State<GeneralPage> {
                                                       .text,
                                                   precioEditingController.text)
                                               .toString(),
-                                          subProductoFk: _selectedTipoSubProducto.tipoId
+                                          subProductoFk: _selectedTipoSubProducto!.tipoId
                                       );
 
                                       addItemProducto(prod);
@@ -887,14 +886,14 @@ class _GeneralPageState extends State<GeneralPage> {
                                               ),
                                               title: Text(
                                                 productoLista[index]
-                                                    .producto
+                                                    .producto!
                                                     .toUpperCase(),
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     color: Colors.black54),
                                               ),
                                               subtitle: Text(
-                                                "Cant.: ${productoLista[index].cantidad} | Precio: S/. ${productoLista[index].precioUnitario} | Total: ${_total(productoLista[index].precioUnitario, productoLista[index].cantidad)}",
+                                                "Cant.: ${productoLista[index].cantidad} | Precio: S/. ${productoLista[index].precioUnitario} | Total: ${_total(productoLista[index].precioUnitario!, productoLista[index].cantidad!)}",
                                                 style:
                                                     TextStyle(fontSize: 13.0),
                                               ),
@@ -1029,7 +1028,7 @@ class _GeneralPageState extends State<GeneralPage> {
     GuiaService service = new GuiaService();
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String id = await prefs.getString("idUser");
+    String id = await prefs.getString("idUser")!;
     print(id);
     guiaModel.usuario = id;
     guiaModel.fechaGuia = selDate;
@@ -1151,14 +1150,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.razonSocial.toLowerCase().contains(query.toLowerCase());
+        return item.razonSocial!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.razonSocial.compareTo(b.razonSocial);
+        return a.razonSocial!.compareTo(b.razonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchConductor.textField.controller.text = item.razonSocial;
+          searchConductor!.textField!.controller!.text = item.razonSocial!;
           guiaModel.conductor = item.id;
         });
       },
@@ -1194,22 +1193,22 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.razonSocial.toLowerCase().contains(query.toLowerCase()) || item.documento.toLowerCase().contains(query.toLowerCase());
+        return item.razonSocial!.toLowerCase().contains(query.toLowerCase()) || item.documento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.razonSocial.compareTo(b.razonSocial);
+        return a.razonSocial!.compareTo(b.razonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchCliente.textField.controller.text = item.razonSocial;
+          searchCliente!.textField!.controller!.text = item.razonSocial!;
           guiaModel.cliente = item.id;
 
           subclientes = [];
 
           _selectedTipoSubClientes =null;
           //pene 2
-          obtenerSubClientes(item.id);  //12/12/2023
-          print("Enviando: "+ item.id);
+          obtenerSubClientes(item.id!);  //12/12/2023
+          print("Enviando: "+ item.id!);
 
           //guiaModel.dirPartida = item.direccion;
           //direccionOrigenEditingController.text = item.direccion;
@@ -1247,14 +1246,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.razonSocial.toLowerCase().contains(query.toLowerCase()) || item.documento.toLowerCase().contains(query.toLowerCase());
+        return item.razonSocial!.toLowerCase().contains(query.toLowerCase()) || item.documento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.razonSocial.compareTo(b.razonSocial);
+        return a.razonSocial!.compareTo(b.razonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchRemitente.textField.controller.text = item.razonSocial;
+          searchRemitente!.textField!.controller!.text = item.razonSocial!;
           guiaModel.remitente = item.id;
         });
       },
@@ -1290,14 +1289,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.razonSocial.toLowerCase().contains(query.toLowerCase()) || item.documento.toLowerCase().contains(query.toLowerCase());
+        return item.razonSocial!.toLowerCase().contains(query.toLowerCase()) || item.documento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.razonSocial.compareTo(b.razonSocial);
+        return a.razonSocial!.compareTo(b.razonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchDestinatario.textField.controller.text = item.razonSocial;
+          searchDestinatario!.textField!.controller!.text = item.razonSocial!;
           guiaModel.destinatario = item.id;
         });
       },
@@ -1330,14 +1329,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchPlaca.textField.controller.text = item.descripcion;
+          searchPlaca!.textField!.controller!.text = item.descripcion!;
           guiaModel.placa = item.descripcion;
           //serieEditingController.text = item.Serie;
           //print(item.Serie);
@@ -1372,14 +1371,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchPlacaPreferencial.textField.controller.text = item.descripcion;
+          searchPlacaPreferencial!.textField!.controller!.text = item.descripcion!;
           guiaModel.placaReferencial = item.descripcion;
         });
       },
@@ -1412,14 +1411,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchSituacion.textField.controller.text = item.descripcion;
+          searchSituacion!.textField!.controller!.text = item.descripcion!;
           guiaModel.tipoSituacion = item.id;
         });
       },
@@ -1452,15 +1451,15 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchProducto.textField.controller.text = item.descripcion;
-          idAddProducto = item.id;
+          searchProducto!.textField!.controller!.text = item.descripcion!;
+          idAddProducto = item.id!;
         });
       },
       itemBuilder: (context, item) {
@@ -1492,14 +1491,14 @@ class _GeneralPageState extends State<GeneralPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
       itemFilter: (item, query) {
-        return item.descripcion.toLowerCase().contains(query.toLowerCase());
+        return item.descripcion!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.descripcion.compareTo(b.descripcion);
+        return a.descripcion!.compareTo(b.descripcion!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchTipoTipos.textField.controller.text = item.descripcion;
+          searchTipoTipos!.textField!.controller!.text = item.descripcion!;
           guiaModel.tipoProducto = item.id;
         });
       },
@@ -1521,7 +1520,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              conductor.razonSocial,
+              conductor.razonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1534,7 +1533,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              conductor.documento,
+              conductor.documento!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1553,7 +1552,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              cliente.razonSocial,
+              cliente.razonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1566,7 +1565,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              cliente.documento,
+              cliente.documento!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1588,7 +1587,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              remitente.razonSocial,
+              remitente.razonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1601,7 +1600,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              remitente.documento,
+              remitente.documento!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1623,7 +1622,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              destinatario.razonSocial,
+              destinatario.razonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1636,7 +1635,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              destinatario.documento,
+              destinatario.documento!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1657,7 +1656,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              placa.descripcion,
+              placa.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1670,7 +1669,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              placa.categoria,
+              placa.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1691,7 +1690,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              placa.descripcion,
+              placa.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1704,7 +1703,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              placa.categoria,
+              placa.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1725,7 +1724,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              situacion.descripcion,
+              situacion.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1738,7 +1737,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              situacion.categoria,
+              situacion.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1759,7 +1758,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              producto.descripcion,
+              producto.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1772,7 +1771,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              producto.categoria,
+              producto.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1793,7 +1792,7 @@ class _GeneralPageState extends State<GeneralPage> {
         children: <Widget>[
           Flexible(
             child: Text(
-              tipo.descripcion,
+              tipo.descripcion!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16.0,
@@ -1806,7 +1805,7 @@ class _GeneralPageState extends State<GeneralPage> {
           ),
           Flexible(
             child: Text(
-              tipo.categoria,
+              tipo.categoria!,
               style: TextStyle(
                 fontSize: 16.0,
                 color: Colors.black54,
@@ -1821,7 +1820,7 @@ class _GeneralPageState extends State<GeneralPage> {
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(selDate),

@@ -9,8 +9,8 @@ import 'package:transana_app/src/services/planilla_gastos_services.dart';
 
 class PlanillaPasajesWidget extends StatefulWidget {
 
-  String idViajeW="";
-  String tipoDocGasto="";
+  String? idViajeW="";
+  String? tipoDocGasto="";
   PlanillaPasajesWidget({
     this.idViajeW,
     this.tipoDocGasto
@@ -24,13 +24,13 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
 
   String selDate = DateTime.now().toString().substring(0, 10);
 
-  static List<PlanillaComprobantesModel> comprobantes = new List<PlanillaComprobantesModel>();
+  static List<PlanillaComprobantesModel> comprobantes = [];
   static PlanillaGastosConsultaSunatModel consultaRuc = new PlanillaGastosConsultaSunatModel();
 
-  static List<EmpleadoModel> entidades = new List<EmpleadoModel>();
+  static List<EmpleadoModel> entidades = [];
   GlobalKey<AutoCompleteTextFieldState<EmpleadoModel>> keyEntidad = new GlobalKey();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  AutoCompleteTextField searchEntidad;
+  AutoCompleteTextField? searchEntidad;
   String idEntidad = "";
 
   final formKey = GlobalKey<FormState>();
@@ -56,14 +56,14 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
     // TODO: implement initState
     super.initState();
     getData();
-    print("ID ACTUAL: " + widget.idViajeW);
+    print("ID ACTUAL: " + widget.idViajeW!);
   }
 
   void getData() async {
     try {
       entidades = await _savePasajesServices.getEntidadesList();
       comprobantes = await objPlanillaGastosServices.getTiposComprobantes();
-      defComprobante = comprobantes[0].tipoId;
+      defComprobante = comprobantes[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -76,7 +76,7 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
 
   void consultaSunat(String ruc) async {
     consultaRuc = await objPlanillaGastosServices.getConsultaSunat(ruc);
-    _razonController.text = consultaRuc.razonSocial;  //newwww
+    _razonController.text = consultaRuc.razonSocial!;  //newwww
     idEntidad = "0";
     setState(() {
       loading = false;
@@ -88,7 +88,7 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _savePasajesModel.viajeFk = widget.idViajeW;
       _savePasajesModel.tipoDocGasto = widget.tipoDocGasto;
       _savePasajesModel.concepto = _descripcionController.text;
@@ -174,7 +174,7 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -183,8 +183,8 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    defComprobante = value;
+                  onChanged: (String? value) {
+                    defComprobante = value!;
                     // List<PlanillaComprobantesModel> lista = destinos.where((element) => element.id == value).toList();
                     // _rucController.text = lista.first.ruc;
                     // _montoController.text = lista.first.monto;
@@ -263,8 +263,8 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Razon Social";
                     }
                     return null;
@@ -289,8 +289,8 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Serie";
                     }
                     return null;
@@ -315,8 +315,8 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Numero";
                     }
                     return null;
@@ -342,8 +342,8 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Monto";
                     }
                     return null;
@@ -411,7 +411,7 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -468,16 +468,16 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
       ),
       itemFilter: (item, query) {
         //return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
-        return item.entiNroDocumento.toLowerCase().contains(query.toLowerCase());
+        return item.entiNroDocumento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEntidad.textField.controller.text = item.entiNroDocumento;
-          _razonController.text = item.entiRazonSocial;
-          idEntidad = item.entiId;
+          searchEntidad!.textField!.controller!.text = item.entiNroDocumento!;
+          _razonController.text = item.entiRazonSocial!;
+          idEntidad = item.entiId!;
         });
       },
       itemBuilder: (context, item) {
@@ -496,7 +496,7 @@ class _PlanillaPasajesWidgetState extends State<PlanillaPasajesWidget> {
         children: <Widget>[
           Expanded(
             child: Text(
-              empleado.entiRazonSocial,
+              empleado.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,

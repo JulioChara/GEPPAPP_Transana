@@ -45,7 +45,7 @@ class _ViajesDocumentosState extends State<ViajesDocumentos> {
 
   Future<String> getIdRol() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
 
   getData() {
@@ -162,7 +162,7 @@ class _ViajesDocumentosState extends State<ViajesDocumentos> {
                               color: Colors.black54),
                         ),
                         Text(
-                          "${double.parse(informeModelList2[i].monto).toStringAsFixed(2)}",
+                          "${double.parse(informeModelList2[i].monto!).toStringAsFixed(2)}",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: TextStyle(
@@ -313,7 +313,7 @@ class _ViajesDocumentosState extends State<ViajesDocumentos> {
 
 
   Future<Null> _selectDateInit(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(initDate),
@@ -328,7 +328,7 @@ class _ViajesDocumentosState extends State<ViajesDocumentos> {
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: DateTime.parse(endDate),

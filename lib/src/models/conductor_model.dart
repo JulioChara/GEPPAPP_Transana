@@ -5,11 +5,11 @@ List<Conductor> conductorFromJson(String str) => List<Conductor>.from(json.decod
 String conductorToJson(List<Conductor> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Conductor {
-  String direccion;
-  String documento;
-  String id;
-  String razonSocial;
-  String titulo;
+  String? direccion;
+  String? documento;
+  String? id;
+  String? razonSocial;
+  String? titulo;
 
   Conductor({
     this.direccion,

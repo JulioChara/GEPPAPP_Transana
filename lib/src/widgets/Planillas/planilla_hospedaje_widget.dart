@@ -12,8 +12,8 @@ import 'package:transana_app/src/services/planilla_gastos_services.dart';
 
 class PlanillaHospedajeWidget extends StatefulWidget {
 
-  String idViajeW="";
-  String tipoDocGasto="";
+  String? idViajeW="";
+  String? tipoDocGasto="";
   PlanillaHospedajeWidget({
     this.idViajeW,
     this.tipoDocGasto
@@ -27,7 +27,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
 
   String selDate = DateTime.now().toString().substring(0, 10);
 
-  static List<PlanillaComprobantesModel> comprobantes = new List<PlanillaComprobantesModel>();
+  static List<PlanillaComprobantesModel> comprobantes = [];
   static PlanillaGastosConsultaSunatModel consultaRuc = new PlanillaGastosConsultaSunatModel();
 
 
@@ -36,10 +36,10 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
   var defComprobante = "";
   var objPlanillaGastosServices = new PlanillaGastosServices(); //
 
-  static List<EmpleadoModel> entidades = new List<EmpleadoModel>();
+  static List<EmpleadoModel> entidades = [];
   GlobalKey<AutoCompleteTextFieldState<EmpleadoModel>> keyEntidad = new GlobalKey();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  AutoCompleteTextField searchEntidad;
+  AutoCompleteTextField? searchEntidad;
   String idEntidad = "";
 
   TextEditingController _rucController = TextEditingController();
@@ -59,7 +59,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
     // TODO: implement initState
     super.initState();
     getData();
-    print("ID ACTUAL: " + widget.idViajeW);
+    print("ID ACTUAL: " + widget.idViajeW!);
   }
 
 
@@ -67,7 +67,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
     try {
       entidades = await _saveHospedajeServices.getEntidadesList();
       comprobantes = await objPlanillaGastosServices.getTiposComprobantes();
-      defComprobante = comprobantes[0].tipoId;
+      defComprobante = comprobantes[0].tipoId!;
 
       setState(() {
         loading = false;
@@ -81,7 +81,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
 
   void consultaSunat(String ruc) async {
     consultaRuc = await objPlanillaGastosServices.getConsultaSunat(ruc);
-    _razonController.text = consultaRuc.razonSocial;  //newwww
+    _razonController.text = consultaRuc.razonSocial!;  //newwww
     idEntidad = "0";
     setState(() {
       loading = false;
@@ -93,7 +93,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
 
 
   void registrar() {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       _saveHospedajeModel.viajeFk = widget.idViajeW;
       _saveHospedajeModel.tipoDocGasto = widget.tipoDocGasto;
       _saveHospedajeModel.concepto = _descripcionController.text;
@@ -179,7 +179,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
                       .map(
                         (e) => DropdownMenuItem(
                       child: Text(
-                        e.tipoDescripcion,
+                        e.tipoDescripcion!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -188,8 +188,8 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
                     ),
                   )
                       .toList(),
-                  onChanged: (value) {
-                    defComprobante = value;
+                  onChanged: (String? value) {
+                    defComprobante = value!;
                     // List<PlanillaComprobantesModel> lista = destinos.where((element) => element.id == value).toList();
                     // _rucController.text = lista.first.ruc;
                     // _montoController.text = lista.first.monto;
@@ -267,8 +267,8 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Razon Social";
                     }
                     return null;
@@ -294,8 +294,8 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese una Serie";
                     }
                     return null;
@@ -320,8 +320,8 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Numero";
                     }
                     return null;
@@ -347,8 +347,8 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
                       return "Ingrese un Monto";
                     }
                     return null;
@@ -416,7 +416,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
 
 
   Future<Null> _selectSelDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         locale: Locale('es', 'ES'),
         initialDate: new DateTime.now(),
@@ -474,16 +474,16 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
       ),
       itemFilter: (item, query) {
         //return item.entiRazonSocial.toLowerCase().contains(query.toLowerCase());
-        return item.entiNroDocumento.toLowerCase().contains(query.toLowerCase());
+        return item.entiNroDocumento!.toLowerCase().contains(query.toLowerCase());
       },
       itemSorter: (a, b) {
-        return a.entiRazonSocial.compareTo(b.entiRazonSocial);
+        return a.entiRazonSocial!.compareTo(b.entiRazonSocial!);
       },
       itemSubmitted: (item) {
         setState(() {
-          searchEntidad.textField.controller.text = item.entiNroDocumento;
-          _razonController.text = item.entiRazonSocial;
-          idEntidad = item.entiId;
+          searchEntidad!.textField!.controller!.text = item.entiNroDocumento!;
+          _razonController.text = item.entiRazonSocial!;
+          idEntidad = item.entiId!;
         });
       },
       itemBuilder: (context, item) {
@@ -502,7 +502,7 @@ class _PlanillaHospedajeWidgetState extends State<PlanillaHospedajeWidget> {
         children: <Widget>[
           Expanded(
             child: Text(
-              empleado.entiRazonSocial,
+              empleado.entiRazonSocial!,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 // fontSize: 16.0,

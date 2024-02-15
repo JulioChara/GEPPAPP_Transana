@@ -12,9 +12,9 @@ import 'package:transana_app/src/widgets/observacion_dialog_widget.dart';
 import 'package:transana_app/src/widgets/observacion_aq_dialog_widget.dart';
 
 class InformeDetallePage extends StatefulWidget {
-  String id;
-  String placa;
-  String conductor;
+  String? id;
+  String? placa;
+  String? conductor;
 
 
   InformeDetallePage({this.id, this.placa, this.conductor});
@@ -27,7 +27,7 @@ class InformeDetallePage extends StatefulWidget {
 class _InformeDetallePageState extends State<InformeDetallePage> {
   InformeDetalleService _informeDetalleService = InformeDetalleService();
   List<InformeDetalleModel> informeDetalleList = [];
-  ProcesoInformeModel _procesoInformeModel;
+  ProcesoInformeModel? _procesoInformeModel;
 
   String idCabezera = "";
   String idDetalle = "";
@@ -45,12 +45,12 @@ class _InformeDetallePageState extends State<InformeDetallePage> {
 
   Future<String> getIdRol() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString("rolId");
+    return prefs.getString("rolId")!;
   }
 
 
   getData() {
-    _informeDetalleService.getInformeDetalle(widget.id).then((value) {
+    _informeDetalleService.getInformeDetalle(widget.id!).then((value) {
       informeDetalleList = value;
       setState(() {
         loading = false;
@@ -106,7 +106,7 @@ class _InformeDetallePageState extends State<InformeDetallePage> {
             ),
               children: <TextSpan>[
                 TextSpan(
-                  text: '\n' + widget.conductor,
+                  text: '\n' + widget.conductor!,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.normal,
@@ -121,7 +121,7 @@ class _InformeDetallePageState extends State<InformeDetallePage> {
           :  ListView.builder(
         itemCount: informeDetalleList.length,
         itemBuilder: (BuildContext context, int index) {
-          String id = informeDetalleList[index].idTipoEstadoAtencion;
+          String id = informeDetalleList[index].idTipoEstadoAtencion!;
 
           Color miColor = Colors.blue;
           switch(informeDetalleList[index].idTipoEstadoAtencionDesc) {
@@ -143,12 +143,12 @@ class _InformeDetallePageState extends State<InformeDetallePage> {
           return ListTile(
             tileColor: miColor,
             leading: Icon(Icons.insert_drive_file),
-            title: Text(informeDetalleList[index].descripcion.toUpperCase()),
+            title: Text(informeDetalleList[index].descripcion!.toUpperCase()),
             subtitle: Text(
-                "Tipo: ${informeDetalleList[index].idTipoIncidenciaDesc} | ${informeDetalleList[index].idTipoEstadoAtencionDesc.toUpperCase()}"),
+                "Tipo: ${informeDetalleList[index].idTipoIncidenciaDesc} | ${informeDetalleList[index].idTipoEstadoAtencionDesc!.toUpperCase()}"),
             onTap: (){
               //print(informeDetalleList[index].idDetalle);
-              idDetalle = informeDetalleList[index].idDetalle;
+              idDetalle = informeDetalleList[index].idDetalle!;
               showEstadoDetalle();
             },
             trailing: FutureBuilder(
@@ -170,9 +170,9 @@ class _InformeDetallePageState extends State<InformeDetallePage> {
                         idAccion = 2;
                       }
 
-                      idCabezera = informeDetalleList[index].idCabezera;
-                      idDetalle = informeDetalleList[index].idDetalle;
-                      incidenciaGen = informeDetalleList[index].idTipoIncidencia;
+                      idCabezera = informeDetalleList[index].idCabezera!;
+                      idDetalle = informeDetalleList[index].idDetalle!;
+                      incidenciaGen = informeDetalleList[index].idTipoIncidencia!;
                       idAccion = idAccion;
 
 
@@ -187,24 +187,18 @@ class _InformeDetallePageState extends State<InformeDetallePage> {
                     },
                     itemBuilder: (BuildContext context) {
                       return [
-                        id != "10526"
-                            ? PopupMenuItem(
+                        if (id != "10526") PopupMenuItem<String>(
                           child: Text("Anular"),
                           value: "Anular",
-                        )
-                            : null,
-                        id != "10526" && (idRol == "1" || idRol == "13")
-                            ? PopupMenuItem(
+                        ),
+                        if (id != "10526" && (idRol == "1" || idRol == "13")) PopupMenuItem<String>(
                           child: Text("Procesar"),
                           value: "Procesar",
-                        )
-                            : null,
-                        id != "10525"
-                            ? PopupMenuItem(
+                        ),
+                        if (id != "10525") PopupMenuItem(
                           child: Text("Solucionar"),
                           value: "Solucionar",
-                        )
-                            : null,
+                        ),
                       ];
                     },
                   )
