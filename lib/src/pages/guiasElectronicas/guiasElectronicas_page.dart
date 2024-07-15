@@ -115,14 +115,14 @@ class _GuiasElectronicasPageState extends State<GuiasElectronicasPage> {
   _openAndroidPrivateFile(String ruta) async {
     final result = await OpenFilex.open(ruta);
   }
-
-  existeCheckList() async{
-    if(_prefs.usIdPlaca != "0" && _prefs.usIdPlaca != ""){ //cuando existe si podremos crear
-      Navigator.pushNamed(context, 'checkListCreate');
-    }else {
-      showMessajeAWYesNo(DialogType.ERROR, "SIN PLACA","No se selecciono ninguna PLACA, ¿Desea Ingresarlo?", 1);
-    }
-  }
+  //
+  // existeCheckList() async{
+  //   if(_prefs.usIdPlaca != "0" && _prefs.usIdPlaca != ""){ //cuando existe si podremos crear
+  //     Navigator.pushNamed(context, 'checkListCreate');
+  //   }else {
+  //     showMessajeAWYesNo(DialogType.ERROR, "SIN PLACA","No se selecciono ninguna PLACA, ¿Desea Ingresarlo?", 1);
+  //   }
+  // }
 
 
   showMessajeAWYesNo(DialogType type, String titulo, String desc, int accion) {

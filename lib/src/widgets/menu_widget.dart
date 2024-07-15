@@ -71,6 +71,15 @@ class _MenuWidgetState extends State<MenuWidget> {
               ),
               ListTile(
                 leading: Icon(
+                  Icons.devices_other,
+                  color: Colors.blueAccent,
+                ),
+                title: Text("Guias Transportistas Electronicas"),
+                onTap: () => Navigator.pushReplacementNamed(context, 'guiasElectronicasHome'),
+                // Navigator.pushReplacementNamed(context, 'home', arguments: _email);
+              ),
+              ListTile(
+                leading: Icon(
                   Icons.directions_car,
                   color: Colors.blueAccent,
                 ),

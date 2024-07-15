@@ -121,7 +121,7 @@ class _InformeCreatePageState extends State<InformeCreatePage> {
 
   onChangeDropdownTipos(TipoPrioridad? selectedPrioridad) {
     informeModel.tipoprioridad = selectedPrioridad!.id;
-    print(selectedPrioridad!.id);
+    print(selectedPrioridad.id);
     setState(() {
       _selectedPrioridad = selectedPrioridad;
     });

@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transana_app/src/constants/constants.dart';
+import 'package:transana_app/utils/sp_global.dart';
 
 
 class LoginServices {
+  SPGlobal _prefs = SPGlobal();
   Future<String> login(String user, String pwd) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,6 +29,18 @@ class LoginServices {
       print(decodeData);
 
       if(result == "1"){
+        _prefs.isLogin = true;
+        _prefs.rolId = decodeData["rolid"];
+        _prefs.idUser = decodeData["id"];
+        _prefs.usNombre = decodeData["usNombre"];
+        _prefs.rolName = decodeData["rolName"];
+
+        ///todo: Nuevas 11/01/2024
+        // _prefs.usIdPlaca = IdPlaca;
+        // _prefs.usIdPlacaDesc = IdPlacaDesc;
+        // _prefs.usIdPlacaRef = IdPlacaRef;
+        // _prefs.usIdPlacaRefDesc = IdPlacaRefDesc;
+
         await prefs.setBool("wasLogin", true);
         await prefs.setString("idUser", decodeData["id"]);
         await prefs.setString("nameUser", user);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:transana_app/src/pages/general_page.dart';
 import 'package:transana_app/src/pages/guia_page.dart';
+import 'package:transana_app/src/pages/guiasElectronicas/guiasElectronicas_create.dart';
+import 'package:transana_app/src/pages/guiasElectronicas/guiasElectronicas_page.dart';
 import 'package:transana_app/src/pages/home_page.dart';
 import 'package:transana_app/src/pages/informes_page_admin.dart';
 import 'package:transana_app/src/pages/login_page.dart';
@@ -15,9 +17,12 @@ import 'package:transana_app/src/pages/viajeVinculacion_page.dart';
 import 'package:transana_app/src/pages/viajeFinalizar_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:transana_app/src/pages/viajes_planilla_gastos_page.dart';
-
+import 'package:transana_app/utils/sp_global.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SPGlobal prefs = SPGlobal();
+  await prefs.initShared();
   runApp(MyApp());
 }
 
@@ -31,7 +36,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LoginPage(),
+        // home: LoginPage(),
+        home: PreInit(),
         localizationsDelegates: [
           // ... app-specific localization delegate[s] here
           GlobalMaterialLocalizations.delegate,
@@ -66,6 +72,12 @@ class MyApp extends StatelessWidget {
           'InformesHomePage':  (BuildContext context) => InformeAdmPage(),
           //
           'parametros':  (BuildContext context) => ParametrosPage(),
+
+
+          //todo: GUIAS ELECTRONICAS
+          'guiasElectronicasHome':  (BuildContext context) => GuiasElectronicasPage(),
+          'guiasElectronicasCreate':  (BuildContext context) => GuiasElectronicasCreatePage(),
+
         },
       ),
       onTap: (){
@@ -77,5 +89,17 @@ class MyApp extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+class PreInit extends StatelessWidget {
+  SPGlobal _prefs = SPGlobal();
+  @override
+  Widget build(BuildContext context) {
+    // return _prefs.isLogin ? ((_prefs.rolId == "1"|| _prefs.rolId == "13" )? HomePage(): OfflinePedidosEntregasPage()) : LoginPage();
+    // return _prefs.isLogin ? HomePage() : LoginPage();
+    return  LoginPage();
+    //return  MyHomePage();
+    //    return CarpetasPage();
   }
 }

@@ -261,8 +261,8 @@ class _GeneralPageState extends State<GeneralPage> {
 
   onChangeDropdownItem(Placa? selectedPlaca) {
     guiaModel.placa = selectedPlaca!.descripcion;
-    serieEditingController.text = selectedPlaca!.Serie!;
-    guiaModel.serie = selectedPlaca!.Serie;
+    serieEditingController.text = selectedPlaca.Serie!;
+    guiaModel.serie = selectedPlaca.Serie;
     setState(() {
       _selectedPlaca = selectedPlaca;
       print(_selectedPlaca!.descripcion);

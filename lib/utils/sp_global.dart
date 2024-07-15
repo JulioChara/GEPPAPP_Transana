@@ -46,31 +46,31 @@ class SPGlobal {
     _prefs.setString("usNombre", value);
   }
 
-  String get usIdPlaca => _prefs.getString("usIdPlaca") ?? "";
-  set usIdPlaca(String value){
-    _prefs.setString("usIdPlaca", value);
-  }
-  String get usIdPlacaDesc => _prefs.getString("usIdPlacaDesc") ?? "";
-  set usIdPlacaDesc(String value){
-    _prefs.setString("usIdPlacaDesc", value);
-  }
-  String get usIdPlacaRef => _prefs.getString("usIdPlacaRef") ?? "";
-  set usIdPlacaRef(String value){
-    _prefs.setString("usIdPlacaRef", value);
-  }
-  String get usIdPlacaRefDesc => _prefs.getString("usIdPlacaRefDesc") ?? "";
-  set usIdPlacaRefDesc(String value){
-    _prefs.setString("usIdPlacaRefDesc", value);
-  }
+  // String get usIdPlaca => _prefs.getString("usIdPlaca") ?? "";
+  // set usIdPlaca(String value){
+  //   _prefs.setString("usIdPlaca", value);
+  // }
+  // String get usIdPlacaDesc => _prefs.getString("usIdPlacaDesc") ?? "";
+  // set usIdPlacaDesc(String value){
+  //   _prefs.setString("usIdPlacaDesc", value);
+  // }
+  // String get usIdPlacaRef => _prefs.getString("usIdPlacaRef") ?? "";
+  // set usIdPlacaRef(String value){
+  //   _prefs.setString("usIdPlacaRef", value);
+  // }
+  // String get usIdPlacaRefDesc => _prefs.getString("usIdPlacaRefDesc") ?? "";
+  // set usIdPlacaRefDesc(String value){
+  //   _prefs.setString("usIdPlacaRefDesc", value);
+  // }
 
 //todo: cosmeticos
 
-  Color get colorA => Color(_prefs.getInt('color') ?? Colors.green.value);
+  Color get colorA => Color(_prefs.getInt('color') ?? Colors.redAccent.value);
   set colorA(Color value) {
     //_prefs.getInt("colorA", value);
   }
 
-  Color get colorB => Color(_prefs.getInt('color') ?? Colors.deepPurpleAccent.value);
+  Color get colorB => Color(_prefs.getInt('color') ?? Colors.black.value);
   set colorB(Color value) {
     //_prefs.getInt("colorA", value);
   }
